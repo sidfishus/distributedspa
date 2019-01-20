@@ -1,2 +1,3 @@
 /client/obj/Debug/*
 /client/node_modules/*
+/client/bin/*
