@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "webpack": "webpack",
+        "flow": "flow"
+    }
+}

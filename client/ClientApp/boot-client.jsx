@@ -6,7 +6,6 @@ import "babel-polyfill";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-
 function RenderApp() {
 	let reactApp = document.getElementById("react-app");
 

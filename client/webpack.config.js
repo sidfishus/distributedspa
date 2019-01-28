@@ -1,5 +1,5 @@
 module.exports = {
-	watch: false,
+	watch: true,
 	context: __dirname,
 	entry: "./ClientApp/boot-client.jsx",
 	output: {
