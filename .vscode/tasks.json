@@ -3,7 +3,7 @@
     "command": "myCommand",
     "tasks" : [
         {
-            "label": "client: client",
+            "label": "client: all",
             "command": "dotnet",
             "type": "process",
             "args": [
