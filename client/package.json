@@ -11,6 +11,7 @@
   "author": "Chris Siddall",
   "license": "ISC",
   "devDependencies": {
+    "aspnet-prerendering": "^3.0.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
@@ -22,7 +23,8 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "webpack": "^4.28.4",
-    "webpack-cli": "^3.2.1"
+    "webpack-cli": "^3.2.1",
+    "webpack-merge": "^4.2.1"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0"

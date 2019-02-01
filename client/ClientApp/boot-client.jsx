@@ -1,8 +1,5 @@
 // @flow
 
-//  Must be included before anything else
-import "babel-polyfill";
-
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 

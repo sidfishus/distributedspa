@@ -8,7 +8,7 @@
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "client: all",
             "program": "${workspaceFolder}/client/bin/Debug/netcoreapp2.1/client.dll",
             "args": [],
             "cwd": "${workspaceFolder}/client",

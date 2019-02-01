@@ -1,3 +1,6 @@
 ﻿@using client
 @using client.Models
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{ /* Below is key otherwise SSPR will never execute */ }
+@addTagHelper *, Microsoft.AspNetCore.SpaServices
