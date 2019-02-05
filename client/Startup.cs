@@ -14,8 +14,10 @@ namespace client
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IHostingEnvironment m_Environment=null;
+        public Startup(IConfiguration configuration,IHostingEnvironment env)
         {
+            m_Environment=env;
             Configuration = configuration;
         }
 
@@ -33,6 +35,15 @@ namespace client
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddNodeServices(options =>
+            {
+                if (m_Environment.IsDevelopment())
+                {
+                    options.LaunchWithDebugging = true;
+                    options.DebuggingPort = 9229;
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
