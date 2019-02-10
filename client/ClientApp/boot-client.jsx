@@ -2,15 +2,20 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import Routes from "./routes";
+import { BrowserRouter } from "react-router-dom";
 
 function RenderApp() {
-	let reactApp = document.getElementById("react-app");
+	let reactElement = document.getElementById("react");
 
-	if (reactApp) {
-		let appJSX = (
-			<div>Hello world, from React and .NET MVC Core</div>
-		);
-		ReactDOM.render(appJSX, reactApp);
+	if (reactElement) {
+		let routes=Routes(false);
+
+		ReactDOM.hydrate(
+			<BrowserRouter>
+				{routes}
+			</BrowserRouter>
+		, reactElement);
 	}
 }
 

@@ -10,15 +10,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace client
+namespace DistributedSPA.Client
 {
     public class Startup
     {
         private IHostingEnvironment m_Environment=null;
+    
         public Startup(IConfiguration configuration,IHostingEnvironment env)
         {
             m_Environment=env;
             Configuration = configuration;
+            
+            // Initialise the singleton
+            Config.Initialise(configuration);
         }
 
         public IConfiguration Configuration { get; }
@@ -40,6 +44,7 @@ namespace client
             {
                 if (m_Environment.IsDevelopment())
                 {
+                    options.InvocationTimeoutMilliseconds=1000000;
                     options.LaunchWithDebugging = true;
                     options.DebuggingPort = 9229;
                 }
@@ -68,6 +73,11 @@ namespace client
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                // Replaces the 'URL rewrite' functionality in IIS
+                routes.MapSpaFallbackRoute(
+                    name: "spa-fallback",
+                    defaults: new { controller = "Home", action = "Index" });
             });
         }
     }

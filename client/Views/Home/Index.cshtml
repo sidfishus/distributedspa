@@ -7,4 +7,12 @@
     };
 }
 
-<div id="react" asp-prerender-module="Server/main-server">Server pre-rendering..</div>
+<div id="react" asp-prerender-module="Server/main-server"></div>
+
+@{
+    // Only load the client APP if 'SSR only' is not specified
+    if(!Config.SSROnly)
+    {
+        <script src="~/js/main-client.js"></script>
+    }
+}

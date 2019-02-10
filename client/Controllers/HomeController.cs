@@ -4,9 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using client.Models;
+using DistributedSPA.Client.Models;
+using Microsoft.Extensions.Configuration;
 
-namespace client.Controllers
+namespace DistributedSPA.Client.Controllers
 {
     public class HomeController : Controller
     {

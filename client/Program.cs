@@ -8,8 +8,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace client
+namespace DistributedSPA.Client
 {
+    // For in depth information regarding the Microsoft SPA services that we are using, see:
+    // https://github.com/aspnet/JavaScriptServices/tree/master/src/Microsoft.AspNetCore.SpaServices
     public class Program
     {
         public static void Main(string[] args)

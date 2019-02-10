@@ -1,6 +1,6 @@
 using System;
 
-namespace client.Models
+namespace DistributedSPA.Client.Models
 {
     public class ErrorViewModel
     {
