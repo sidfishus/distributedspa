@@ -1,5 +1,6 @@
 const merge = require("webpack-merge");
 const path = require("path");
+const webpack = require("webpack");
 
 const sharedConfig = {
 	watch: true,
@@ -22,7 +23,10 @@ const sharedConfig = {
 								},
 								"useBuiltIns": true
 							}], "babel-preset-react", "flow"],
-						plugins: ["transform-object-rest-spread"]
+						plugins: [
+							"transform-object-rest-spread",
+							"react-hot-loader/babel"
+						]
 					}
 				}
 			}
@@ -43,6 +47,9 @@ const clientConfig = merge(sharedConfig, {
 	},
 	output: {
 		path: path.join(__dirname,"/wwwroot/js"),
+		// Key for hot module replacement (below). Corresponds to the
+		// WebpackDevMiddlewareOptions.HotModuleReplacementEndpoint option directory
+		publicPath: "/wwwroot/"
 	},
 	devtool: "eval-source-map",
 });

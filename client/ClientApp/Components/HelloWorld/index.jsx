@@ -18,9 +18,9 @@ class HelloWorld extends React.Component<IHelloWorldProps> {
 
     render() {
         // This causes the fllowing warning in Chrome:
-        // VM7377:37 Warning: Text content did not match. Server: "Server" Client: "Client"
+        // "VM7377:37 Warning: Text content did not match. Server: "Server" Client: "Client""
         // Because the HTML rendered varies between server and client (which is my intention)
-        // It's OK to ignore this error
+        // It's OK to ignore this error and go on about your business as usual
         return <h1>Hello World<br/> - {(this.IsServer()?"Server":"Client")} x</h1>;
     }
 };

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.SpaServices.Webpack;
 
 namespace DistributedSPA.Client
 {
@@ -57,6 +58,18 @@ namespace DistributedSPA.Client
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                // 'npm install webpack-dev-middleware' is required for this
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
+                    HotModuleReplacement = true,
+                    // See: https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.spaservices.webpack.webpackdevmiddlewareoptions.reacthotmodulereplacement?view=aspnetcore-2.2
+                    // 'npm install --save-dev aspnet-webpack-react' is required for this
+                    //sidtodo not tested
+                    ReactHotModuleReplacement = true,
+                    // Key - corresponds with the path in webpack module.exports output.publicPath
+                    // 'npm install --save-dev aspnet-webpack' is required for this
+                    HotModuleReplacementEndpoint = "/wwwroot/__webpack_hmr"
+                });
             }
             else
             {
