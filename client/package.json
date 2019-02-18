@@ -14,6 +14,7 @@
     "aspnet-prerendering": "^3.0.1",
     "aspnet-webpack": "^3.0.0",
     "aspnet-webpack-react": "^4.0.0",
+    "axios": "^0.18.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",

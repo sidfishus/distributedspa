@@ -37,6 +37,20 @@
                 "showReuseMessage": false,
                 "clear": false
             }
+        },
+        {
+            "label": "api",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/api/api.csproj"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
         }
     ]
 }

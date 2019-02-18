@@ -19,6 +19,12 @@ namespace DistributedSPA.Client
     
         public Startup(IConfiguration configuration,IHostingEnvironment env)
         {
+            //sidtodo here
+            // from client to API
+            // API returns not auth
+            // client catches and history.push("login")
+            // once successful login, continue to original API function
+
             m_Environment=env;
             Configuration = configuration;
             
@@ -64,7 +70,6 @@ namespace DistributedSPA.Client
                     HotModuleReplacement = true,
                     // See: https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.spaservices.webpack.webpackdevmiddlewareoptions.reacthotmodulereplacement?view=aspnetcore-2.2
                     // 'npm install --save-dev aspnet-webpack-react' is required for this
-                    //sidtodo not tested
                     ReactHotModuleReplacement = true,
                     // Key - corresponds with the path in webpack module.exports output.publicPath
                     // 'npm install --save-dev aspnet-webpack' is required for this

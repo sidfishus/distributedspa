@@ -2,3 +2,5 @@ client/obj/
 client/node_modules/
 client/bin/
 client/wwwroot/js/main-client.js
+api/obj/
+api/bin/
