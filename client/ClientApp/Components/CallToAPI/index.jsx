@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from "react";
+import { Fragment } from "react";
 import {  CreateAPIURL,HttpGetJson,FormatHttpError } from "../../Shared/http";
 import { withRouter } from "react-router-dom";
 
@@ -78,21 +79,21 @@ class CallToAPIComponent extends React.Component<ICallToAPIProps,ICallToAPIState
         else {
             const modelJsxArray=loadedData.map((val,index) => {
                 return (
-                    <div key={`obj-${index}`}>
+                    <Fragment>
                         {index>0 && <hr/>}
                         <h2>obj at index {index} =</h2>
                         <h2>property 1: {val.Property1}</h2>
                         <h2>property 2: {val.Property2}</h2>
-                    </div>
+                    </Fragment>
                 );
             });
 
             jsx=(
-                <div>
+                <Fragment>
                     <h1>Data is loaded:</h1>
                     <br/>
                     {modelJsxArray}
-                </div>
+                </Fragment>
             );
         }
 
