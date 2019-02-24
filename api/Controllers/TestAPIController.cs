@@ -9,6 +9,13 @@ using Microsoft.AspNetCore.Authorization;
 //sidtodo here
 // This page helped with authorisation:
 // https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-2.2&tabs=visual-studio
+
+// Authentication via Microsoft:
+// https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/microsoft-logins?view=aspnetcore-2.2
+
+// Also the series starting here:
+// https://andrewlock.net/introduction-to-authentication-with-asp-net-core/
+
 namespace DistributedSPA.API.Controllers
 {
     [Route("[controller]")]

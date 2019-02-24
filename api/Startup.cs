@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Identity;
 
 namespace DistributedSPA.API
 {
@@ -26,6 +27,16 @@ namespace DistributedSPA.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            //sidtodo change identity class?
+            //services.AddDefaultIdentity<IdentityUser>();
+            /*
+            services.AddAuthentication().AddMicrosoftAccount(options =>
+            {
+                options.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
+                options.ClientSecret = Configuration["Authentication:Microsoft:Password"];
+            });
+            */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -35,6 +35,7 @@ namespace DistributedSPA.Client.Controllers
             return View();
         }
 
+        //sidtodo what's this??
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
