@@ -19,7 +19,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace DistributedSPA.API.Controllers
 {
     [Route("[controller]")]
-    //sidtodo [Authorize]
+    [Authorize]
     public class TestAPIController : Base
     {
         // GET TestAPI/TestAction
