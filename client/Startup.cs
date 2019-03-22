@@ -47,6 +47,7 @@ namespace DistributedSPA.Client
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            // For debugging server side javascript via Node
             services.AddNodeServices(options =>
             {
                 if (m_Environment.IsDevelopment())

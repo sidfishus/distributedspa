@@ -2,70 +2,49 @@
 
 import * as React from "react";
 import { Form,Row,Col,ControlLabel,Button } from "react-bootstrap";
-
-type LoginState = {
-    username: string;
-    password: string;
-};
-
-const initialState : LoginState = {
-    username: "",
-    password: ""
-}
+import * as Oidc from "oidc-client";
 
 type LoginProps = {
+};
+
+type LoginState = {
 };
 
 class Login extends React.Component<LoginProps,LoginState> {
     constructor(props:LoginProps) {
         super(props);
-        this.state=initialState;
+        this.IDS4LoginClick = this.IDS4LoginClick.bind(this);
     }
 
-    //sidtodo here
-    LoginClick() {
-        const { state } = this;
-        const url=CreateAPIURL("Account/Login");
+    IDS4LoginClick() {
+        // Create the user manager
+        //sidtodo change the URL's
+        var config = {
+            authority: "http://localhost:5099",
+            client_id: "DistributedSPA",
+            redirect_uri: "https://localhost:5001/logincallback",
+            response_type: "code",
+            scope:"openid DistributedSPA",
+            post_logout_redirect_uri : "https://localhost:5001/login",
+        };
+        var mgr = new Oidc.UserManager(config);
 
-        HttpPostJson(url,state).then((res) => {
-            alert("success");
-        }).catch((res) => {
-            alert("fail");
-        });
+        // Login
+        mgr.signinRedirect();
     }
 
     render() {
         const { state } = this;
         return (
-            <Form>
-                <TextInput
-                    labelText="User"
-                    value={state.username}
-                    UpdateState={(value,state) => {
-                        return {
-                            username: value
-                        };
-                    }}
-                    parent={this}
-                />
-
-                <TextInput
-                    labelText="Password"
-                    value={state.password}
-                    UpdateState={(value,state) => {
-                        return {
-                            password: value
-                        };
-                    }}
-                    parent={this}
-                    password={true}
-                />
-
-                <InputButton
-                    text="Login"
-                    onClick={() => this.LoginClick()}
-                    disabled={state.username==="" || state.password===""}
-                />
+            <Form horizontal>
+                <Row>
+                    <Col>
+                        <InputButton
+                            text="Identity Server 4 Login"
+                            onClick={this.IDS4LoginClick}
+                        />
+                    </Col>
+                </Row>
             </Form>
         );
     }

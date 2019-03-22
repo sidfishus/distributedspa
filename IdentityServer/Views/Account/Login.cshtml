@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Login";
+
+    dynamic prerenderData = new
+    {
+        //sidtodo needed?
+        isAuthenticated = this.User.Identity.IsAuthenticated,
+    };
+}
+
+@{
+    /*
+    //sidtodo
+<div id="react" asp-prerender-module="Server/main-server"></div>
+*/
+}
+
+<div id="react" />
+
+@{
+    // Only load the client APP if 'SSR only' is not specified
+    //sidtodo SSR
+    if(true)
+    //if(!Config.SSROnly)
+    {
+        <script src="~/js/main-client.js"></script>
+    }
+}

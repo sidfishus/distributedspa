@@ -1,0 +1,44 @@
+{
+  "name": "identityserver",
+  "version": "1.0.0",
+  "description": "Distributed SPA Identity Server Front End",
+  "main": "app.js",
+  "scripts": {
+    "webpack": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sidfishus/distributedspa.git"
+  },
+  "author": "Chris Siddall",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sidfishus/distributedspa/issues"
+  },
+  "homepage": "https://github.com/sidfishus/distributedspa#readme",
+  "devDependencies": {
+    "aspnet-prerendering": "^3.0.1",
+    "aspnet-webpack": "^3.0.0",
+    "aspnet-webpack-react": "^4.0.0",
+    "axios": "^0.18.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-react": "^6.24.1",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-hot-loader": "^4.5.3",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-middleware": "^3.6.1",
+    "webpack-hot-middleware": "^2.24.3",
+    "webpack-merge": "^4.2.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  }
+}

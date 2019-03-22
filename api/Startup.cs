@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using IdentityServer4.Services;
+using IdentityServer4.AccessTokenValidation;
 
 namespace DistributedSPA.API
 {
@@ -25,6 +27,25 @@ namespace DistributedSPA.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //// For identity server
+            services
+                .AddMvcCore()
+                .AddAuthorization()
+                .AddJsonFormatters();
+
+            services
+                .AddAuthentication("Bearer")
+                .AddIdentityServerAuthentication(options =>
+                {
+                    // The URL to the identity server
+                    //sidtodo change hard coded URL
+                    options.Authority = "http://localhost:5099";
+                    options.RequireHttpsMetadata = false;
+
+                    options.ApiName = "DistributedSPA";
+                });
+            ////
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -53,8 +74,24 @@ namespace DistributedSPA.API
                 builder.AllowAnyMethod();
             });
 
+            //sidtodo try
+            // services.AddCors(options =>
+            // {
+            //     // this defines a CORS policy called "default"
+            //     options.AddPolicy("default", policy =>
+            //     {
+            //         policy.WithOrigins("http://localhost:5001")
+            //             .AllowAnyHeader()
+            //             .AllowAnyMethod();
+            //     });
+            // });
+
+            // app.UseCors("default"); // inside Configure()
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            // For identity server
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
