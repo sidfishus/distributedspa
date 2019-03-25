@@ -39,7 +39,7 @@ namespace DistributedSPA.IdentityServer
                     options.InvocationTimeoutMilliseconds=1000000;
                     options.LaunchWithDebugging = true;
                     //sidtodo change the port?
-                    options.DebuggingPort = 9229;
+                    options.DebuggingPort = 9230;
                 }
             });
 
