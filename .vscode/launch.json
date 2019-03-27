@@ -106,7 +106,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "identity",
-            "program": "${workspaceFolder}/IdentityServer/bin/Debug/netcoreapp2.1/IdentityServer.dll",
+            "program": "${workspaceFolder}/IdentityServer/bin/Debug/netcoreapp2.2/IdentityServer.dll",
             "args": [],
             "cwd": "${workspaceFolder}/IdentityServer",
             "stopAtEntry": false,

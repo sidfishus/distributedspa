@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using DistributedSPA.API.Models;
 using Microsoft.AspNetCore.Authorization;
 
-//sidtodo here
 // This page helped with authorisation:
 // https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-2.2&tabs=visual-studio
 

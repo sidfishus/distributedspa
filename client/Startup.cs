@@ -19,7 +19,6 @@ namespace DistributedSPA.Client
     
         public Startup(IConfiguration configuration,IHostingEnvironment env)
         {
-            //sidtodo here
             // from client to API
             // API returns not auth
             // client catches and history.push("login")

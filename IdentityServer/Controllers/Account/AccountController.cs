@@ -29,6 +29,7 @@ namespace DistributedSPA.IdentityServer {
                 ExpiresUtc = System.DateTimeOffset.UtcNow.Add(new System.TimeSpan(0,5,0))
             };
 
+            //sidtodo here - as well as SSR / node services
             await HttpContext.SignInAsync("1", "username", props);
 
             if (Url.IsLocalUrl(ViewBag.ReturnUrl))
