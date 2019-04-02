@@ -2,14 +2,14 @@
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { Login } from "./Components/Login";
+import App from "./Components/App";
 
 function RenderApp() {
 	let reactElement = document.getElementById("react");
 
 	if (reactElement) {
 		ReactDOM.hydrate(
-			<Login />
+			<App />
 		, reactElement);
 	}
 }

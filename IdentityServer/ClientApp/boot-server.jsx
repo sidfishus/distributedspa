@@ -11,7 +11,6 @@ export default createServerRenderer(params => {
 
         const routes = <Routes />;
 
-        //sidtodo here: could the location be causing it to not work as expected?
         let routerContext = { };
         const app = (
             <StaticRouter context={routerContext} location={params.location.path} children={routes} />

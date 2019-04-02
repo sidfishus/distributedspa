@@ -10,35 +10,38 @@ namespace DistributedSPA.IdentityServer {
     [Authorize]
     public class AccountController : Controller {
 
-        [HttpGet]
+        [HttpGet("[controller]/Login")]
         [AllowAnonymous]
-        public IActionResult Login(string returnUrl)
+        public IActionResult GetLogin(string returnUrl)
         {
-            ViewBag.ReturnUrl=returnUrl;
-            return View();
+            return View("Login");
         }
 
-        [HttpPost]
+        // Login a user
+        // Returns the redirect link
+        [HttpPost("[controller]/Login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Login()
+        public async Task<ActionResult<string>> PostLogin([FromBody] LoginModel model)
         {
             AuthenticationProperties props = null;
             props = new AuthenticationProperties
             {
+                //sidtodo expiration time.
+                //sidtodo login form choose whether to remain logged in
                 IsPersistent = true,
                 ExpiresUtc = System.DateTimeOffset.UtcNow.Add(new System.TimeSpan(0,5,0))
             };
 
-            //sidtodo here - as well as SSR / node services
-            await HttpContext.SignInAsync("1", "username", props);
+            //sidtodo correct sign in details
+            await HttpContext.SignInAsync("111", "username", props);
 
-            if (Url.IsLocalUrl(ViewBag.ReturnUrl))
+            if (Url.IsLocalUrl(model.ReturnUrl))
             {
-                return Redirect(ViewBag.ReturnUrl);
+                return model.ReturnUrl;
             }
-            else if (string.IsNullOrEmpty(ViewBag.ReturnUrl))
+            else if (string.IsNullOrEmpty(model.ReturnUrl))
             {
-                return Redirect("~/");
+                return "~/";
             }
             // user might have clicked on a malicious link - should be logged
             throw new Exception("invalid return URL");
