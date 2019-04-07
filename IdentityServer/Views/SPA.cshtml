@@ -7,11 +7,12 @@
     dynamic prerenderData = new
     {
         //sidtodo needed?
-        isAuthenticated = this.User.Identity.IsAuthenticated
+        isAuthenticated = this.User.Identity.IsAuthenticated,
+        extra=ViewData["Extra"]
     };
 }
 
-<div id="react" asp-prerender-module="Server/main-server"></div>
+<div id="react" asp-prerender-module="Server/main-server" asp-prerender-data="prerenderData"></div>
 
 @{
     // Only load the client APP if 'SSR only' is not specified

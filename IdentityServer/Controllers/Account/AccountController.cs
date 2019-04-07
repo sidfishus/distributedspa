@@ -14,7 +14,7 @@ namespace DistributedSPA.IdentityServer {
         [AllowAnonymous]
         public IActionResult GetLogin(string returnUrl)
         {
-            return View("Login");
+            return View("../SPA");
         }
 
         // Login a user

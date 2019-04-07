@@ -21,6 +21,10 @@ export default createServerRenderer(params => {
         params.domainTasks.then(() => {
             resolve({
                 html: rendered,
+                // Use 'globals' to pass data from the server to the client. Accessible under 'window'.
+                globals: {
+                    prerenderData: params.data
+                }
             });
         },reject);
     });
