@@ -6,7 +6,8 @@ export class Consent extends React.Component {
     }
 
     render() {
-        let prerenderData=window.prerenderData;
+        //sidtodo here
+        const { prerenderData } = this.props;
         return (
             <div>test</div>
         );

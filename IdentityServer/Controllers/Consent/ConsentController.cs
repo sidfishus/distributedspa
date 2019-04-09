@@ -29,6 +29,7 @@ namespace DistributedSPA.IdentityServer {
             m_ResourceStore=resourceStore;
         }
 
+        // Get consent from the user that they are happy for their details to be shared by the client
         public async Task<IActionResult> Index(string returnUrl)
         {
             //sidtodo here

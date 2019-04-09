@@ -6,7 +6,8 @@ import { Login } from "./Components/Login";
 import { GetQSParamF } from "./Shared/Misc";
 import { Consent } from "./Components/Consent";
 
-const LoginRouted = ({location,props}) => {
+const LoginRouted = (props) => {
+    const { location } = props;
     return (
         <Login
             returnUrl={GetQSParamF(location)("returnUrl")}
@@ -15,7 +16,8 @@ const LoginRouted = ({location,props}) => {
     );
 };
 
-const ConsentRouted = ({location,props}) => {
+const ConsentRouted = (props) => {
+    const { location } = props;
     return (
         <Consent
             returnUrl={GetQSParamF(location)("returnUrl")}
@@ -32,12 +34,12 @@ const NoRoutingMatch = (what) => {
     );
 };
 
-const Routes = () => {
+const Routes = ({prerenderData}) => {
 
     const routes = (
         <Switch>
-            <Route exact path="/account/login" render={(props) => <LoginRouted {...props} />} />
-            <Route exact path="/consent" render={(props) => <ConsentRouted {...props} />} />
+            <Route exact path="/account/login" render={(props) => <LoginRouted {...props} prerenderData={prerenderData} />} />
+            <Route exact path="/consent" render={(props) => <ConsentRouted {...props} prerenderData={prerenderData} />} />
             <Route render={(props) => <NoRoutingMatch {...props} />} />
         </Switch>
     );

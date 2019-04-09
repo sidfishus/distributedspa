@@ -12,11 +12,15 @@ import { hot } from "react-hot-loader/root";
 // https://natemcmaster.com/blog/2018/07/05/aspnetcore-hmr/
 // https://github.com/aspnet/JavaScriptServices/issues/1204
 // Thankyou for all who contributed and it's great to see how open-source is flourishing.
+
+// Note: this is only ever called when the app rendered in the browser. SSR does not use this component.
 const App = () => {
 
 	return (
         <BrowserRouter>
-            <Routes />
+            <Routes
+                prerenderData={window.prerenderData}
+            />
         </BrowserRouter>
     );
 };

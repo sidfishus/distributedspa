@@ -33,6 +33,7 @@
     "react-dom": "^16.8.4",
     "react-hot-loader": "^4.8.0",
     "react-router-dom": "^5.0.0",
+    "semantic-ui-react": "^0.86.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-middleware": "^3.6.1",
