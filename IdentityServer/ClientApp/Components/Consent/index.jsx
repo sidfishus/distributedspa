@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Fragment } from "react";
-import { Form, Divider, Segment, Checkbox, Grid } from "semantic-ui-react";
+import { Form, Divider, Segment, Checkbox, Grid, Container, Header } from "semantic-ui-react";
 import { ConditionalBold } from "../ConditionalBold";
 
 export class Consent extends React.Component {
@@ -9,43 +9,50 @@ export class Consent extends React.Component {
     }
 
     render() {
-        //sidtodo here
         const { prerenderData } = this.props;
         const { extra: consentModel } = prerenderData;
 
         const needScopeDivider=consentModel.identityScopes.length>0 && consentModel.apiScopes.length>0;
 
         return (
-            <Form>
-                <div>{consentModel.clientName} is requesting your permission.</div>
+            <Fragment>
                 <br />
-                <div>Please uncheck the permissions you do not wish to grant.</div>
-                <ConsentDivider />
+                <br />
+                <Form>
+                    <Container text className="width60Percent">
+                    <Segment placeholder size="huge" raised>
+                        <Header textAlign="center"><u>{consentModel.clientName} is requesting your permission.</u></Header>
+                        <br />
+                        <div>Please uncheck the permissions you do not wish to grant:</div>
+                        <ConsentDivider />
 
-                {consentModel.identityScopes.length > 0 &&
-                    <ConstentScopeList
-                        scopeList={consentModel.identityScopes}
-                        title={"Personal Information:"}
-                        keyBase="identity"
-                    />
-                }
+                        {consentModel.identityScopes.length > 0 &&
+                            <ConstentScopeList
+                                scopeList={consentModel.identityScopes}
+                                title={"Personal Information:"}
+                                keyBase="identity"
+                            />
+                        }
 
-                {needScopeDivider && <ConsentDivider horizontal/>}
+                        {needScopeDivider && <ConsentDivider horizontal/>}
 
-                {consentModel.apiScopes.length > 0 &&
-                    <ConstentScopeList
-                        scopeList={consentModel.apiScopes}
-                        title={"Application Access:"}
-                        keyBase="api"
-                    />
-                }
-            </Form>
+                        {consentModel.apiScopes.length > 0 &&
+                            <ConstentScopeList
+                                scopeList={consentModel.apiScopes}
+                                title={"Application Access:"}
+                                keyBase="api"
+                            />
+                        }
+                    </Segment>
+                    </Container>
+                </Form>
+            </Fragment>
         );
     }
 }
 
 const ConsentDivider = () => {
-    return <Divider horizontal />;
+    return <Divider />;
 };
 
 const ConstentScopeList = ({scopeList, title,keyBase}) => {
@@ -57,7 +64,7 @@ const ConstentScopeList = ({scopeList, title,keyBase}) => {
     return (
         <Fragment>
             <label>{title}</label>
-            <Grid>
+            <Grid columns={2}>
                 {scopes}
             </Grid>
         </Fragment>
@@ -68,7 +75,7 @@ const ConsentScope = ({scope}) => {
 
     return (
         <Grid.Row>
-            <Grid.Column>
+            <Grid.Column width={2}>
                 <Checkbox toggle defaultChecked />
             </Grid.Column>
             <Grid.Column width={8}>
@@ -77,7 +84,7 @@ const ConsentScope = ({scope}) => {
                 >
                     {scope.displayName}
                 </ConditionalBold>
-                {scope.required && " (required)"}
+                {scope.required && <i> (required)</i>}
             </Grid.Column>
         </Grid.Row>
     );
