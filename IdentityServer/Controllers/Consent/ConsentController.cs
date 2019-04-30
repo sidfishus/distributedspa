@@ -9,6 +9,8 @@ using IdentityServer4.Stores;
 using IdentityServer4.Extensions;
 using System.Linq;
 using DistributedSPA.IdentityServer;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace DistributedSPA.IdentityServer {
 
@@ -29,10 +31,9 @@ namespace DistributedSPA.IdentityServer {
             m_ResourceStore=resourceStore;
         }
 
-        // Get consent from the user that they are happy for their details to be shared by the client
+        // Get consent from the user that they are happy for their details to be shared with the client
         public async Task<IActionResult> Index(string returnUrl)
         {
-            //sidtodo here
             var request = await m_Interaction.GetAuthorizationContextAsync(returnUrl);
             if(request!=null) {
                 // Get the client information
@@ -68,6 +69,35 @@ namespace DistributedSPA.IdentityServer {
                 //sidtodo
             }
             return null;
+        }
+
+        [HttpPost("[controller]")]
+        [AllowAnonymous]
+        public async Task<ActionResult<string>> PostIndex([FromBody] PostConsentModel model)
+        {
+            var request = await m_Interaction.GetAuthorizationContextAsync(model.ReturnUrl);
+            if(request==null) {
+                //sidtodo
+                return null;
+            }
+
+            Func<IEnumerable<ScopeDetails>,IEnumerable<string>> GetSelectedScopes = (scopeDetails) => {
+                return scopeDetails.Where(scope => scope.Checked).Select(scope => scope.Name);
+            };
+
+            var scopesConsented = GetSelectedScopes(model.ApiScopes).Concat(GetSelectedScopes(model.IdentityScopes));
+            if(scopesConsented==null || scopesConsented.Count()==0) {
+                return null; //sidtodo
+            }
+
+            var grantedConsent = new ConsentResponse
+            {
+                RememberConsent = model.RememberConsent,
+                ScopesConsented = scopesConsented.ToArray()
+            };
+
+            await m_Interaction.GrantConsentAsync(request, grantedConsent);
+            return model.ReturnUrl;
         }
 
         private ScopeDetails CreateScopeDetails(

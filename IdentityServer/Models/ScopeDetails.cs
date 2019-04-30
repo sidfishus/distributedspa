@@ -17,5 +17,8 @@ namespace DistributedSPA.IdentityServer {
 
         [JsonProperty("Required")]
         public bool Required;
+
+        [JsonProperty("Checked")]
+        public bool Checked;
     }
 }

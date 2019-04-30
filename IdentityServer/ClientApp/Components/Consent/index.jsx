@@ -2,6 +2,8 @@ import * as React from "react";
 import { Fragment } from "react";
 import { Form, Divider, Segment, Checkbox, Grid, Container, Header, Button } from "semantic-ui-react";
 import { ConditionalBold } from "../ConditionalBold";
+//sidtodo use library functions
+import axios from "axios";
 
 export class Consent extends React.Component {
     constructor(props) {
@@ -9,10 +11,14 @@ export class Consent extends React.Component {
 
         super(props);
 
+        this.SubmitConsent=this.SubmitConsent.bind(this);
+        this.UpdateState = this.UpdateState.bind(this);
+
         // Copy the consent model in to our state
         this.state = {
             identityScopes: this.CopyScopeForState(consentModel.identityScopes),
             apiScopes: this.CopyScopeForState(consentModel.apiScopes),
+            //rememberConsent: false,
         };
     }
 
@@ -21,6 +27,9 @@ export class Consent extends React.Component {
         const { extra: consentModel } = this.props.prerenderData;
 
         const needScopeDivider=(identityScopes.length>0 && apiScopes.length>0);
+
+        const submitDisabled=(!this.AllRequiredAccessIsTicked(identityScopes) ||
+            !this.AllRequiredAccessIsTicked(apiScopes));
 
         return (
             <Fragment>
@@ -54,16 +63,27 @@ export class Consent extends React.Component {
                                 />
                             }
 
+                            <ConsentDivider horizontal/>
+
+                            <br />
+
                             <Grid columns={1}>
                                 <Grid.Column>
-                                    <Button
-                                        primary
-                                        size="big"
-                                        disabled={!this.AllRequiredAccessIsTicked(identityScopes) ||
-                                            !this.AllRequiredAccessIsTicked(apiScopes)}
+                                    <SubmitConsent
+                                        parent={this}
+                                        remember={false}
+                                        disabled={submitDisabled}
                                     >
                                         Allow
-                                    </Button>
+                                    </SubmitConsent>
+
+                                    <SubmitConsent
+                                        parent={this}
+                                        remember={true}
+                                        disabled={submitDisabled}
+                                    >
+                                        Allow and Remember
+                                    </SubmitConsent>
                                 </Grid.Column>
                             </Grid>
                         </Segment>
@@ -114,6 +134,20 @@ export class Consent extends React.Component {
 
         return requiredAreAllTicked;
     }
+
+    SubmitConsent(rememberConsent) {
+        const { returnUrl } = this.props;
+        axios.post("/consent",{
+            ...this.state,
+            rememberConsent: rememberConsent,
+            returnUrl: returnUrl
+        }).then(res => {
+            window.location=res.data;
+        }).catch(err => {
+            //sidtodo
+            alert("error 2");
+        });
+    }
 }
 
 const ConsentDivider = () => {
@@ -140,27 +174,74 @@ const ConstentScopeList = ({scopeList, title, keyBase, fOnChange}) => {
             </Grid>
         </Fragment>
     );
-}
+};
 
-const ConsentScope = ({scope, fOnChange}) => {
-
+const MyCheckbox = ({fOnChange, label, checked}) => {
     return (
         <Grid.Row>
             <Grid.Column width={3}>
                 <Checkbox
                     toggle
-                    checked={scope.checked}
+                    checked={checked}
                     onChange={(event,data) => fOnChange(data.checked)}
                 />
             </Grid.Column>
-            <Grid.Column width={13}>
-                <ConditionalBold
-                    condition={scope.required}
-                >
-                    {scope.displayName}
-                </ConditionalBold>
-                {scope.required && <i> (required)</i>}
-            </Grid.Column>
+            {label && 
+                <Grid.Column width={13}>
+                    {label}
+                </Grid.Column>
+            }
         </Grid.Row>
+    );
+};
+
+const ConsentScope = ({scope, fOnChange}) => {
+
+    const label = (
+        <Fragment>
+            <ConditionalBold
+                condition={scope.required}
+            >
+                {scope.displayName}
+            </ConditionalBold>
+            {scope.required && <i> (required)</i>}
+        </Fragment>
+    );
+
+    return (
+        <MyCheckbox
+            fOnChange={fOnChange}
+            label={label}
+            checked={scope.checked}
+        />
+    );
+};
+
+// const RememberConsent = ({parent}) => {
+//     return (
+//         <Fragment>
+//             <label>Remember my answer:</label>
+//             <MyCheckbox
+//                 fOnChange={(checked) => parent.UpdateState(() => {
+//                     return {
+//                         rememberConsent: checked
+//                     };
+//                 })}
+//                 checked={parent.state.rememberConsent}
+//             />
+//         </Fragment>
+//     );
+// };
+
+const SubmitConsent = ({parent, remember, children, disabled}) => {
+    return (
+        <Button
+            primary
+            size="big"
+            disabled={disabled}
+            onClick={() => parent.SubmitConsent(remember)}
+        >
+            {children}
+        </Button>
     );
 };
