@@ -19,10 +19,6 @@ namespace DistributedSPA.Client
     
         public Startup(IConfiguration configuration,IHostingEnvironment env)
         {
-            // from client to API
-            // API returns not auth
-            // client catches and history.push("login")
-            // once successful login, continue to original API function
 
             m_Environment=env;
             Configuration = configuration;

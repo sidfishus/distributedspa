@@ -32,7 +32,7 @@ namespace DistributedSPA.IdentityServer
             return new Client[] {
                 new Client
                 {
-                    ClientId = "DistributedSPA",
+                    ClientId = "DistributedSPAClient",
                     ClientName = "Distributed SPA",
                     AllowedGrantTypes = GrantTypes.Code,
                     RequirePkce = true,
@@ -48,9 +48,9 @@ namespace DistributedSPA.IdentityServer
                     */
 
                     //sidtodo change hard coded URL's
-                    RedirectUris =           { "https://localhost:5001/logincallback" },
-                    PostLogoutRedirectUris = { "https://localhost:5001/login" },
-                    AllowedCorsOrigins =     { "https://localhost:5001" },
+                    RedirectUris =           { "http://localhost:5000/logincallback" },
+                    PostLogoutRedirectUris = { "http://localhost:5000/login" },
+                    AllowedCorsOrigins =     { "http://localhost:5000" },
 
                     // scopes that client has access to (the dedicated API for the client)
                     AllowedScopes = {

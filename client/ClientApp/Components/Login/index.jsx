@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Form,Row,Col,ControlLabel,Button } from "react-bootstrap";
 import * as Oidc from "oidc-client";
+import {  CreateAPIURL } from "../../Shared/http";
 
 type LoginProps = {
 };
@@ -11,37 +12,65 @@ type LoginState = {
 };
 
 class Login extends React.Component<LoginProps,LoginState> {
+
+    m_UserManager;
+
     constructor(props:LoginProps) {
         super(props);
         this.IDS4LoginClick = this.IDS4LoginClick.bind(this);
+        this.CallAPIClick=this.CallAPIClick.bind(this);
     }
 
-    IDS4LoginClick() {
+    //sidtodo this doesn't work if you put it in the constructor??
+    componentDidMount() {
         // Create the user manager
         //sidtodo change the URL's
         var config = {
             authority: "http://localhost:5099",
-            client_id: "DistributedSPA",
-            redirect_uri: "https://localhost:5001/logincallback",
+            client_id: "DistributedSPAClient",
+            redirect_uri: "http://localhost:5000/logincallback",
             response_type: "code",
             scope:"openid DistributedSPA",
-            post_logout_redirect_uri : "https://localhost:5001/login",
+            post_logout_redirect_uri : "http://localhost:5000/login",
         };
-        var mgr = new Oidc.UserManager(config);
+        this.m_UserManager = new Oidc.UserManager(config);
+    }
 
+    IDS4LoginClick() {
         // Login
-        mgr.signinRedirect();
+        this.m_UserManager.signinRedirect();
+    }
+
+    //sidtodo current move
+    CallAPIClick() {
+        this.m_UserManager.getUser().then(user => {
+            var url = CreateAPIURL("TestAPI/TestAction");
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url);
+            xhr.onload = function () {
+                //sidtodo current check for 401
+                console.log(xhr.status, JSON.parse(xhr.responseText));
+            }
+            xhr.setRequestHeader("Authorization", "Bearer " + user.access_token);
+            xhr.send();
+        });
     }
 
     render() {
         const { state } = this;
         return (
-            <Form horizontal>
+            <Form horizontal="true">
                 <Row>
                     <Col>
                         <InputButton
                             text="Identity Server 4 Login"
                             onClick={this.IDS4LoginClick}
+                        />
+
+                        <InputButton
+                            text="Call API"
+                            onClick={this.CallAPIClick}
                         />
                     </Col>
                 </Row>

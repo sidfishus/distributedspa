@@ -29,7 +29,7 @@ namespace DistributedSPA.IdentityServer {
                 //sidtodo expiration time.
                 //sidtodo login form choose whether to remain logged in
                 IsPersistent = true,
-                ExpiresUtc = System.DateTimeOffset.UtcNow.Add(new System.TimeSpan(0,5,0))
+                ExpiresUtc = System.DateTimeOffset.UtcNow.Add(new System.TimeSpan(0,1,0))
             };
 
             //sidtodo correct sign in details
