@@ -26,14 +26,15 @@ namespace DistributedSPA.IdentityServer {
             AuthenticationProperties props = null;
             props = new AuthenticationProperties
             {
+                //sidtodo current login checkbox: remember me
                 //sidtodo expiration time.
-                //sidtodo login form choose whether to remain logged in
                 IsPersistent = true,
                 ExpiresUtc = System.DateTimeOffset.UtcNow.Add(new System.TimeSpan(0,1,0))
             };
 
             //sidtodo correct sign in details
-            await HttpContext.SignInAsync("111", "username", props);
+            
+            await HttpContext.SignInAsync("sid" /* Subject aka user ID */, "sid" /* Username */, props);
 
             if (Url.IsLocalUrl(model.ReturnUrl))
             {

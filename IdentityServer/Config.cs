@@ -20,9 +20,15 @@ namespace DistributedSPA.IdentityServer
 
         public static IEnumerable<ApiResource> GetApis()
         {
+            var dspa=new ApiResource("DistributedSPA", "API for the Distributed SPA application.");
+            // Set the scope to required so it's not possible to login without consent for it
+            var scopeIter=dspa.Scopes.GetEnumerator();
+            scopeIter.MoveNext();
+            scopeIter.Current.Required=true;
+
             // The list of API's involved
             return new ApiResource[] {
-                new ApiResource("DistributedSPA", "API for the Distributed SPA application.")
+                dspa,
             };
         }
 
@@ -37,6 +43,8 @@ namespace DistributedSPA.IdentityServer
                     AllowedGrantTypes = GrantTypes.Code,
                     RequirePkce = true,
                     RequireClientSecret = false,
+
+                    //sidtodo current: refresh tokens?
 
                     // secret for authentication
                     /*
@@ -55,7 +63,7 @@ namespace DistributedSPA.IdentityServer
                     // scopes that client has access to (the dedicated API for the client)
                     AllowedScopes = {
                         "DistributedSPA",
-                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.OpenId
                     }
                 }
             };
