@@ -12,6 +12,7 @@ export default createServerRenderer(params => {
         const routes = (
             <Routes
                 prerenderData={params.data}
+                SSR={true}
             />
         );
 

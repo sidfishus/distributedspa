@@ -20,6 +20,7 @@ const App = () => {
         <BrowserRouter>
             <Routes
                 prerenderData={window.prerenderData}
+                SSR={false}
             />
         </BrowserRouter>
     );

@@ -23,10 +23,9 @@ namespace DistributedSPA.IdentityServer
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // uncomment, if you wan to add an MVC-based UI
-            // services.AddMvc()
-            //     .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2)
-            //     .AddJsonOptions(options => options.SerializerSettings.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Objects);
+            services.AddMvc()
+                .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options => options.SerializerSettings.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Objects);
 
             var builder = services.AddIdentityServer()
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())

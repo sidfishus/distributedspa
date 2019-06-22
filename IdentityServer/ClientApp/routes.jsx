@@ -34,13 +34,13 @@ const NoRoutingMatch = (what) => {
     );
 };
 
-const Routes = ({prerenderData}) => {
+const Routes = (props) => {
 
     const routes = (
         <Switch>
-            <Route exact path="/account/login" render={(props) => <LoginRouted {...props} prerenderData={prerenderData} />} />
-            <Route exact path="/consent" render={(props) => <ConsentRouted {...props} prerenderData={prerenderData} />} />
-            <Route render={(props) => <NoRoutingMatch {...props} />} />
+            <Route exact path="/account/login" render={(renderProps) => <LoginRouted {...renderProps} {...props} />} />
+            <Route exact path="/consent" render={(renderProps) => <ConsentRouted {...renderProps} {...props} />} />
+            <Route render={(renderProps) => <NoRoutingMatch {...renderProps} {...props} />} />
         </Switch>
     );
 	
