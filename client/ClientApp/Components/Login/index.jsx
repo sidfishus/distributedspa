@@ -44,16 +44,23 @@ class Login extends React.Component<LoginProps,LoginState> {
     //sidtodo current move
     CallAPIClick() {
         this.m_UserManager.getUser().then(user => {
-            var url = CreateAPIURL("TestAPI/TestAction");
 
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", url);
-            xhr.onload = function () {
-                //sidtodo current check for 401
-                console.log(xhr.status, JSON.parse(xhr.responseText));
+            if(user) {
+                var url = CreateAPIURL("TestAPI/TestAction");
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", url);
+                xhr.onload = function () {
+                    //sidtodo current check for 401
+                    console.log(xhr.status, JSON.parse(xhr.responseText));
+                }
+                xhr.setRequestHeader("Authorization", "Bearer " + user.access_token);
+                xhr.send();
             }
-            xhr.setRequestHeader("Authorization", "Bearer " + user.access_token);
-            xhr.send();
+            else {
+                // Take user to login screen
+                this.IDS4LoginClick();
+            }
         });
     }
 
