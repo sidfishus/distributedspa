@@ -8,7 +8,7 @@ using IdentityServer4.Services;
 using IdentityServer4.Stores;
 using IdentityServer4.Extensions;
 using System.Linq;
-using DistributedSPA.IdentityServer;
+using DistributedSPA.IdentityServer.Models;
 using System.Collections;
 using System.Collections.Generic;
 

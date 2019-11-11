@@ -8,6 +8,8 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 using System;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DistributedSPA.IdentityServer
 {
@@ -17,7 +19,14 @@ namespace DistributedSPA.IdentityServer
         {
             Console.Title = "IdentityServer4";
 
-            CreateWebHostBuilder(args).Build().Run();
+            var webHost=CreateWebHostBuilder(args).Build();
+
+            var config = webHost.Services.GetRequiredService<IConfiguration>();
+            var connectionString = config.GetConnectionString("LiveConnection");
+
+            SeedData.Seed(connectionString);
+
+            webHost.Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)

@@ -4,11 +4,21 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using static Microsoft.AspNetCore.Http.AuthenticationManagerExtensions;
 using System;
+using DistributedSPA.IdentityServer.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace DistributedSPA.IdentityServer {
 
     [Authorize]
     public class AccountController : Controller {
+
+        private SignInManager<AppUser> m_SignInMgr;
+
+        public AccountController(
+            SignInManager<AppUser> signInManager) {
+            
+            m_SignInMgr = signInManager;
+        }
 
         [HttpGet("[controller]/Login")]
         [AllowAnonymous]
@@ -33,8 +43,8 @@ namespace DistributedSPA.IdentityServer {
             };
 
             //sidtodo correct sign in details
-            
-            await HttpContext.SignInAsync("sid" /* Subject aka user ID */, "sid" /* Username */, props);
+
+            var result = await m_SignInMgr.PasswordSignInAsync("Admin","53bf3cca-4313-44fc-a421-1ee2131dc788aA!", true /* Remember login */, false);
 
             if (Url.IsLocalUrl(model.ReturnUrl))
             {

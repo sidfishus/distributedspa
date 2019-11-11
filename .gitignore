@@ -2,10 +2,14 @@ client/obj/
 client/node_modules/
 client/bin/
 client/wwwroot/js/main-client.js
+
 api/obj/
 api/bin/
+
 IdentityServer/obj/
 IdentityServer/bin/
 IdentityServer/tempkey.rsa
 IdentityServer/identityserver4_log.txt
 IdentityServer/node_modules/
+IdentityServer/AspIdUsers.db
+IdentityServer/Migrations
