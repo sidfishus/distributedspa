@@ -13,3 +13,6 @@ IdentityServer/identityserver4_log.txt
 IdentityServer/node_modules/
 IdentityServer/AspIdUsers.db
 IdentityServer/Migrations
+
+shared/obj/
+shared/bin/

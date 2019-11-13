@@ -8,6 +8,9 @@ namespace DistributedSPA.IdentityServer {
         [JsonProperty("password")]
         public string Password;
 
+        [JsonProperty("rememberMe")]
+        public bool RememberMe;
+
         [JsonProperty("returnUrl")]
         public string ReturnUrl;
     }

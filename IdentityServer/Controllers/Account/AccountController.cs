@@ -6,6 +6,7 @@ using static Microsoft.AspNetCore.Http.AuthenticationManagerExtensions;
 using System;
 using DistributedSPA.IdentityServer.Models;
 using Microsoft.AspNetCore.Identity;
+using DistributedSPA.Shared;
 
 namespace DistributedSPA.IdentityServer {
 
@@ -31,28 +32,29 @@ namespace DistributedSPA.IdentityServer {
         // Returns the redirect link
         [HttpPost("[controller]/Login")]
         [AllowAnonymous]
-        public async Task<ActionResult<string>> PostLogin([FromBody] LoginModel model)
+        public async Task<IActionResult> PostLogin([FromBody] LoginModel model)
         {
             AuthenticationProperties props = null;
             props = new AuthenticationProperties
             {
-                //sidtodo current login checkbox: remember me
-                //sidtodo expiration time.
+                //sidtodo: what's this?
                 IsPersistent = true,
+                //sidtodo expiration time?
                 ExpiresUtc = System.DateTimeOffset.UtcNow.Add(new System.TimeSpan(0,1,0))
             };
 
-            //sidtodo correct sign in details
-
-            var result = await m_SignInMgr.PasswordSignInAsync("Admin","53bf3cca-4313-44fc-a421-1ee2131dc788aA!", true /* Remember login */, false);
+            var result = await m_SignInMgr.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
+            if(!result.Succeeded) {
+                return Unauthorized("Invalid user of password.");
+            }
 
             if (Url.IsLocalUrl(model.ReturnUrl))
             {
-                return model.ReturnUrl;
+                return Ok(model.ReturnUrl);
             }
             else if (string.IsNullOrEmpty(model.ReturnUrl))
             {
-                return "~/";
+                return Ok("~/");
             }
             // user might have clicked on a malicious link - should be logged
             throw new Exception("invalid return URL");
