@@ -43,6 +43,8 @@ namespace DistributedSPA.IdentityServer
                     AllowedGrantTypes = GrantTypes.Code,
                     RequirePkce = true,
                     RequireClientSecret = false,
+                    AlwaysSendClientClaims = true,
+                    AlwaysIncludeUserClaimsInIdToken = true,
 
                     //sidtodo current: refresh tokens?
 

@@ -6,7 +6,6 @@ using static Microsoft.AspNetCore.Http.AuthenticationManagerExtensions;
 using System;
 using DistributedSPA.IdentityServer.Models;
 using Microsoft.AspNetCore.Identity;
-using DistributedSPA.Shared;
 
 namespace DistributedSPA.IdentityServer {
 
@@ -34,14 +33,6 @@ namespace DistributedSPA.IdentityServer {
         [AllowAnonymous]
         public async Task<IActionResult> PostLogin([FromBody] LoginModel model)
         {
-            AuthenticationProperties props = null;
-            props = new AuthenticationProperties
-            {
-                //sidtodo: what's this?
-                IsPersistent = true,
-                //sidtodo expiration time?
-                ExpiresUtc = System.DateTimeOffset.UtcNow.Add(new System.TimeSpan(0,1,0))
-            };
 
             var result = await m_SignInMgr.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, false);
             if(!result.Succeeded) {

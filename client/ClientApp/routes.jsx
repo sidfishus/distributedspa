@@ -7,14 +7,20 @@ import Home from "./Components/Home";
 import CallToAPIComponent from "./Components/CallToAPI";
 import Login from "./Components/Login";
 import LoginCallback from "./Components/LoginCallback";
+import { DPAUserManager } from "./Shared/DPAUserManager";
+import { StandardPage } from "./Components/Standard Page";
 
-const Routes = (isServer: boolean) => {
-	const homeJsx = <Home isServer={isServer}/>;
+const Routes = (isServer: boolean, userMan: DPAUserManager) => {
+    const homeJsx = <Home isServer={isServer}/>;
+    
+    const StdPage = (props) => {
+        return <StandardPage {...props} userMan={userMan} isServer={isServer} />;
+    };
 
     const routes = (
         <Switch>
             <Route exact path="/helloworld" render={() => <HelloWorld isServer={isServer} />} />
-            <Route exact path="/home" render={() => homeJsx} />
+            <Route exact path="/home" render={() => <StdPage pageRender={() => <Home isServer={isServer} />} />} />
             <Route exact path="/calltoapi" component={CallToAPIComponent} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/logincallback" component={LoginCallback} />

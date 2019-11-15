@@ -11,7 +11,7 @@ import { StaticRouter } from "react-router-dom";
 export default createServerRenderer(params => {
     return new Promise((resolve, reject) => {
 
-        const routes = Routes(true);
+        const routes = Routes(true, null);
 
         let routerContext = { };
         const app = (

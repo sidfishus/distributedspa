@@ -56,7 +56,8 @@ namespace DistributedSPA.IdentityServer
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApis())
                 .AddInMemoryClients(Config.GetClients())
-                .AddAspNetIdentity<AppUser>();
+                .AddAspNetIdentity<AppUser>()
+                .AddProfileService<IdentityServer.IdentityProfileService>();
 
              // For debugging server side javascript via Node
             services.AddNodeServices(options =>

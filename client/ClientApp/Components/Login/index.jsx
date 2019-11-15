@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { Form,Row,Col,ControlLabel,Button } from "react-bootstrap";
-import * as Oidc from "oidc-client";
 import {  CreateAPIURL } from "../../Shared/http";
 
 type LoginProps = {
@@ -14,11 +13,13 @@ type LoginState = {
 class Login extends React.Component<LoginProps,LoginState> {
 
     m_UserManager;
+    m_User;
 
     constructor(props:LoginProps) {
         super(props);
         this.IDS4LoginClick = this.IDS4LoginClick.bind(this);
         this.CallAPIClick=this.CallAPIClick.bind(this);
+        this.SetUser=this.SetUser.bind(this);
     }
 
     //sidtodo this doesn't work if you put it in the constructor??
@@ -43,25 +44,41 @@ class Login extends React.Component<LoginProps,LoginState> {
 
     //sidtodo current move
     CallAPIClick() {
-        this.m_UserManager.getUser().then(user => {
 
-            if(user) {
-                var url = CreateAPIURL("TestAPI/TestAction");
+        if(!this.m_User) {
+            this.m_UserManager.events.addUserLoaded(args => {
+                alert("new user");
+                this.m_UserManager.getUser().then(user => {
+                    this.m_User = user;
+                });
+            });
 
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", url);
-                xhr.onload = function () {
-                    //sidtodo current check for 401
-                    console.log(xhr.status, JSON.parse(xhr.responseText));
-                }
-                xhr.setRequestHeader("Authorization", "Bearer " + user.access_token);
-                xhr.send();
+            this.m_UserManager.getUser().then(user => {
+                this.m_User = user;
+            });
+
+            return;
+        }
+
+        if(this.m_User) {
+
+            //alert("expired: " + this.m_User.expired());
+
+            var url = CreateAPIURL("TestAPI/TestAction");
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url);
+            xhr.onload = function () {
+                //sidtodo current check for 401
+                console.log(xhr.status, JSON.parse(xhr.responseText));
             }
-            else {
-                // Take user to login screen
-                this.IDS4LoginClick();
-            }
-        });
+            xhr.setRequestHeader("Authorization", "Bearer " + this.m_User.access_token);
+            xhr.send();
+        }
+        else {
+            // Take user to login screen
+            this.IDS4LoginClick();
+        }
     }
 
     render() {

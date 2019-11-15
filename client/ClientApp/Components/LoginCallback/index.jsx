@@ -11,12 +11,13 @@ class LoginCallback extends React.PureComponent {
     }
 
     componentDidMount() {
+        //sidtodo decipher the forward path instead of assuming home
         const { history } = this.props;
 
         new Oidc.UserManager(
             {response_mode:"query"}
         ).signinRedirectCallback().then(() => {
-            history.push("./login");
+            history.push("./home");
         });
     }
 
