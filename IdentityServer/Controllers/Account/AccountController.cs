@@ -6,6 +6,7 @@ using static Microsoft.AspNetCore.Http.AuthenticationManagerExtensions;
 using System;
 using DistributedSPA.IdentityServer.Models;
 using Microsoft.AspNetCore.Identity;
+using IdentityServer4.Services;
 
 namespace DistributedSPA.IdentityServer {
 
@@ -13,11 +14,14 @@ namespace DistributedSPA.IdentityServer {
     public class AccountController : Controller {
 
         private SignInManager<AppUser> m_SignInMgr;
+        private readonly IIdentityServerInteractionService m_Interaction;
 
         public AccountController(
-            SignInManager<AppUser> signInManager) {
+            SignInManager<AppUser> signInManager,
+            IIdentityServerInteractionService interaction) {
             
             m_SignInMgr = signInManager;
+            m_Interaction=interaction;
         }
 
         [HttpGet("[controller]/Login")]
@@ -49,6 +53,17 @@ namespace DistributedSPA.IdentityServer {
             }
             // user might have clicked on a malicious link - should be logged
             throw new Exception("invalid return URL");
+        }
+
+        // Logout a user
+        // Returns the redirect link
+        [HttpGet("[controller]/logout")]
+        public async Task<IActionResult> GetLogout(string logoutId)
+        {
+            var logout = await m_Interaction.GetLogoutContextAsync(logoutId);
+            await m_SignInMgr.SignOutAsync();
+
+            return Redirect(logout?.PostLogoutRedirectUri);
         }
     }
 }

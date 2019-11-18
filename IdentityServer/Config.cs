@@ -59,7 +59,7 @@ namespace DistributedSPA.IdentityServer
 
                     //sidtodo change hard coded URL's
                     RedirectUris =           { "http://localhost:5000/logincallback" },
-                    PostLogoutRedirectUris = { "http://localhost:5000/login" },
+                    PostLogoutRedirectUris = { "http://localhost:5000/logoutcallback" },
                     AllowedCorsOrigins =     { "http://localhost:5000" },
 
                     // scopes that client has access to (the dedicated API for the client)

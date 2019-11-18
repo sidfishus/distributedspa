@@ -19,7 +19,7 @@ export class DPAUserManager {
                 redirect_uri: "http://localhost:5000/logincallback",
                 response_type: "code",
                 scope:"openid DistributedSPA",
-                post_logout_redirect_uri : "http://localhost:5000/login",
+                post_logout_redirect_uri : "http://localhost:5000/logoutcallback",
             };
             this.m_UserManager = new Oidc.UserManager(config);
         }

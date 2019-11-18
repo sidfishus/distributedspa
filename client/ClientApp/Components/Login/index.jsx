@@ -22,20 +22,6 @@ class Login extends React.Component<LoginProps,LoginState> {
         this.SetUser=this.SetUser.bind(this);
     }
 
-    //sidtodo this doesn't work if you put it in the constructor??
-    componentDidMount() {
-        // Create the user manager
-        //sidtodo change the URL's
-        var config = {
-            authority: "http://localhost:5099",
-            client_id: "DistributedSPAClient",
-            redirect_uri: "http://localhost:5000/logincallback",
-            response_type: "code",
-            scope:"openid DistributedSPA",
-            post_logout_redirect_uri : "http://localhost:5000/login",
-        };
-        this.m_UserManager = new Oidc.UserManager(config);
-    }
 
     IDS4LoginClick() {
         // Login

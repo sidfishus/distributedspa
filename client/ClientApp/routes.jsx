@@ -17,10 +17,13 @@ const Routes = (isServer: boolean, userMan: DPAUserManager) => {
         return <StandardPage {...props} userMan={userMan} isServer={isServer} />;
     };
 
+    const HomeRender = () => <StdPage pageRender={() => <Home isServer={isServer} />} />;
+
     const routes = (
         <Switch>
             <Route exact path="/helloworld" render={() => <HelloWorld isServer={isServer} />} />
-            <Route exact path="/home" render={() => <StdPage pageRender={() => <Home isServer={isServer} />} />} />
+            <Route exact path="/home" render={HomeRender} />
+            <Route exact path="/logoutcallback" render={HomeRender} />} />
             <Route exact path="/calltoapi" component={CallToAPIComponent} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/logincallback" component={LoginCallback} />
