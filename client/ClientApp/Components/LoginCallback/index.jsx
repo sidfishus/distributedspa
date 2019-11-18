@@ -4,10 +4,17 @@ import * as React from "react";
 import { withRouter } from "react-router-dom";
 import * as Oidc from "oidc-client";
 
+type ILoginCallbackProps = {
+    history: any;
+};
+
+type ILoginCallbackState = {
+};
+
 // See below for help with this.
 // http://docs.identityserver.io/en/latest/quickstarts/6_javascript_client.html
-class LoginCallback extends React.PureComponent {
-    constructor(props) {
+class LoginCallback extends React.PureComponent<ILoginCallbackProps,ILoginCallbackState> {
+    constructor(props: ILoginCallbackProps) {
         super(props);
     }
 

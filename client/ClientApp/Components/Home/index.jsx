@@ -9,11 +9,11 @@ import { Button } from "react-bootstrap";
 import { HttpAuthGetJson, CreateAPIURL } from "../../Shared/http";
 import { DPAUserManager } from "../../Shared/DPAUserManager";
 
-type ICallToAPIProps = {
+type IHomeProps = {
     userMan: DPAUserManager;
 };
 
-type ICallToAPIState = {
+type IHomeState = {
     errorMsg: ?string;
 
     // Requesting data?
@@ -23,15 +23,15 @@ type ICallToAPIState = {
     loadedData: ?string;
 };
 
-const initialState : ICallToAPIState = {
+const initialState : IHomeState = {
     errorMsg: null,
     reqData: false,
     loadedData: null
 };
 
-class Home extends React.PureComponent<ICallToAPIProps,ICallToAPIState> {
+class Home extends React.PureComponent<IHomeProps,IHomeState> {
 
-    constructor(props) {
+    constructor(props: IHomeProps) {
         super(props);
         this.state = {...initialState };
         this.BindThis();
@@ -78,6 +78,7 @@ class Home extends React.PureComponent<ICallToAPIProps,ICallToAPIState> {
         );
     }
 
+    CallAPIClick: Function;
     CallAPIClick() {
         const { userMan } = this.props;
 

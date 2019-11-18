@@ -3,31 +3,46 @@
 import * as React from "react";
 import { Fragment } from "react";
 import { Button } from "react-bootstrap";
+import { DPAUserManager } from "../../Shared/DPAUserManager";
+import * as Oidc from "oidc-client";
 
-const initialState = {
+const initialState : IStandardPageState = {
     user: null
 };
 
-export class StandardPage extends React.PureComponent {
+type IStandardPageProps = {
+    userMan: ?DPAUserManager;
+    pageRender: (props: Object) => React.Node;
+};
 
-    constructor(props) {
+type IStandardPageState = {
+    user: Oidc.User;
+};
+
+export class StandardPage extends React.PureComponent<IStandardPageProps,IStandardPageState> {
+
+    SetUserLoaded: (user: Oidc.User) => void;
+
+    constructor(props: IStandardPageProps) {
         super(props);
 
         this.state={...initialState};
 
-        this.setState = this.setState.bind(this);
-        this.SetLoaded=this.SetLoaded.bind(this);
+        const thisAsAny:any = this;
+        thisAsAny.setState = this.setState.bind(this);
+
+        this.SetUserLoaded=this.SetUserLoaded.bind(this);
     }
 
     componentDidMount() {
         const { userMan } = this.props;
         if(userMan) {
             // This will cause the user to login if they havn't already
-            userMan.Initialise(this.SetLoaded);
+            userMan.Initialise(this.SetUserLoaded);
         }
     }
 
-    SetLoaded(user) {
+    SetUserLoaded(user: Oidc.User): void {
         this.setState(() => {
             return {
                 user: user
@@ -39,7 +54,7 @@ export class StandardPage extends React.PureComponent {
         const { user } = this.state;
         const { pageRender, userMan } = this.props;
 
-        if(!user) {
+        if(!user || !userMan) {
             return null;
         }
 

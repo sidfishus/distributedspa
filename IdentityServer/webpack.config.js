@@ -23,7 +23,7 @@ const sharedConfig = {
 									]
 								},
 								"useBuiltIns": true
-							}], "babel-preset-react", "flow"],
+							}], "babel-preset-react", "babel-preset-flow"],
 						plugins: [
 							"transform-object-rest-spread",
 							"react-hot-loader/babel"

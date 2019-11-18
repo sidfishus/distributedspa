@@ -9,6 +9,3 @@
 [options]
 
 [strict]
-
-[untyped]
-<PROJECT_ROOT>/node_modules/.*

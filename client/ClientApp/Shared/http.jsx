@@ -1,6 +1,7 @@
 // @flow
 
 import axios from "axios";
+import * as Oidc from "oidc-client";
 
 //sidtodo change API path
 export function CreateAPIURL(url:string, params: ?string = null) {
@@ -13,7 +14,7 @@ export function HttpGetJson(url:string) {
 
 export function HttpPostJson(
 	url:string,
-	json: object) {
+	json: Object) {
 	return axios.post(url,json);
 }
 
@@ -25,7 +26,7 @@ const CreateAuthAxios = (user) => {
 	});
 };
 
-export const HttpAuthGetJson = (user, url: string) => {
+export const HttpAuthGetJson = (user: Oidc.User, url: string) => {
 	const obj=CreateAuthAxios(user);
 
 	return obj.get(url);

@@ -4,14 +4,14 @@ import * as Oidc from "oidc-client";
 
 export class DPAUserManager {
 
-    m_UserManager;
+    m_UserManager: Oidc.UserManager;
 
     constructor() {
         this.m_UserManager=null;
     }
 
     // Call this within the componentDidMount method of a React component.
-    Initialise(fOnLoaded) {
+    Initialise(fOnLoaded: (user: Oidc.User) => void) {
         if(!this.m_UserManager) {
             //sidtodo change the URL's
             var config = {
@@ -40,7 +40,7 @@ export class DPAUserManager {
     }
 
     // Get the logged in user and call a function with the user as a parameter
-    WithUser(f) {
+    WithUser(f: (user: Oidc.User) => void) {
         this.m_UserManager.getUser().then(user => {
             if(!user) {
                 this.m_UserManager.signinRedirect();

@@ -8,7 +8,7 @@ import LoginCallback from "./Components/LoginCallback";
 import { DPAUserManager } from "./Shared/DPAUserManager";
 import { StandardPage } from "./Components/Standard Page";
 
-const Routes = (isServer: boolean, userMan: DPAUserManager) => {
+const Routes = (isServer: boolean, userMan: ?DPAUserManager) => {
         
     const StdPage = (props) => {
         return <StandardPage {...props} userMan={userMan} isServer={isServer} />;
