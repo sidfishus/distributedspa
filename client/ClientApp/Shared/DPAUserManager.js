@@ -1,3 +1,4 @@
+// @flow
 
 import * as Oidc from "oidc-client";
 
