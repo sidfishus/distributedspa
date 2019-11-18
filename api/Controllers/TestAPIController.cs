@@ -23,6 +23,7 @@ namespace DistributedSPA.API.Controllers
     {
         // GET TestAPI/TestAction
         [HttpGet("TestAction")]
+        [Authorize("IsAdmin")]
         public ActionResult<IEnumerable<TestActionModel>> TestAction()
         {
             // Return some arbitrary data

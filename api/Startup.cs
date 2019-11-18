@@ -31,7 +31,12 @@ namespace DistributedSPA.API
             services
                 .AddMvcCore()
                 .AddAuthorization()
-                .AddJsonFormatters();
+                .AddJsonFormatters()
+                .AddAuthorization(options =>
+                {
+                    // Can only be used by users with an 'IsAdmin' claim
+                    options.AddPolicy("IsAdmin", policy => policy.RequireClaim("IsAdmin"));
+                });
 
             services
                 .AddAuthentication("Bearer")
