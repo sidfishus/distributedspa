@@ -6,10 +6,6 @@ import { Button } from "react-bootstrap";
 import { DPAUserManager } from "../../Shared/DPAUserManager";
 import * as Oidc from "oidc-client";
 
-const initialState : IStandardPageState = {
-    user: null
-};
-
 type IStandardPageProps = {
     userMan: ?DPAUserManager;
     pageRender: (props: Object) => React.Node;
@@ -17,6 +13,10 @@ type IStandardPageProps = {
 
 type IStandardPageState = {
     user: Oidc.User;
+};
+
+const initialState : IStandardPageState = {
+    user: null
 };
 
 export class StandardPage extends React.PureComponent<IStandardPageProps,IStandardPageState> {
@@ -69,7 +69,7 @@ export class StandardPage extends React.PureComponent<IStandardPageProps,IStanda
     }
 };
 
-const LogoutClick = (userMan) => {
+const LogoutClick = (userMan: DPAUserManager) => {
     userMan.Logout();
 };
 

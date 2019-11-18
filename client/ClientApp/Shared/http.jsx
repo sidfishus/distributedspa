@@ -18,7 +18,7 @@ export function HttpPostJson(
 	return axios.post(url,json);
 }
 
-const CreateAuthAxios = (user) => {
+const CreateAuthAxios = (user: Oidc.User) => {
 	return axios.create({
 		headers: {
 			"Authorization" : "Bearer " + user.access_token

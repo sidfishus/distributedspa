@@ -10,7 +10,7 @@ import { StandardPage } from "./Components/Standard Page";
 
 const Routes = (isServer: boolean, userMan: ?DPAUserManager) => {
         
-    const StdPage = (props) => {
+    const StdPage = (props: Object) => {
         return <StandardPage {...props} userMan={userMan} isServer={isServer} />;
     };
 
