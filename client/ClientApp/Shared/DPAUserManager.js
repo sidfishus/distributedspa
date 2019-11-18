@@ -37,4 +37,16 @@ export class DPAUserManager {
     Logout() {
         this.m_UserManager.signoutRedirect();
     }
+
+    // Get the logged in user and call a function with the user as a parameter
+    WithUser(f) {
+        this.m_UserManager.getUser().then(user => {
+            if(!user) {
+                this.m_UserManager.signinRedirect();
+            }
+            else {
+                f(user);
+            }
+        });
+    }
 };

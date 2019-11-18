@@ -17,6 +17,20 @@ export function HttpPostJson(
 	return axios.post(url,json);
 }
 
+const CreateAuthAxios = (user) => {
+	return axios.create({
+		headers: {
+			"Authorization" : "Bearer " + user.access_token
+		}
+	});
+};
+
+export const HttpAuthGetJson = (user, url: string) => {
+	const obj=CreateAuthAxios(user);
+
+	return obj.get(url);
+}
+
 export function FormatHttpError(data:any) {
 	let objType = typeof (data);
 	if (objType === "object") {

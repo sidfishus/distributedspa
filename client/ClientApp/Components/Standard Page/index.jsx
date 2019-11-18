@@ -47,7 +47,7 @@ export class StandardPage extends React.PureComponent {
                 <p>Logged in as: {user.profile.name}</p>
                 <LogoutButton userMan={userMan} />
                 <hr />
-                {pageRender()}
+                {pageRender(this.props)}
             </Fragment>
         );
     }
