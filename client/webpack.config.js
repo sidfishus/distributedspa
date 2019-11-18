@@ -3,7 +3,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 const sharedConfig = {
-	watch: true,
+	watch: false,
 	mode: "development",
 	module: {
 		rules: [

@@ -15,11 +15,32 @@
                 "kind": "build",
                 "isDefault": false
             },
-            "dependsOn": ["client: flow"],
+            "dependsOn": ["client: flow", "client: webpack"],
         },
         {
             "label": "client: flow",
             "script": "flow",
+            "type": "npm",
+            "options": {
+                "cwd": "${workspaceFolder}/client"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": "$eslint-stylish",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "dedicated",
+                "showReuseMessage": false,
+                "clear": false
+            }
+        },
+        {
+            "label": "client: webpack",
+            "script": "webpack",
             "type": "npm",
             "options": {
                 "cwd": "${workspaceFolder}/client"
