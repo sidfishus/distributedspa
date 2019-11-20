@@ -1,8 +1,6 @@
 const merge = require("webpack-merge");
 const path = require("path");
-const webpack = require("webpack");
 
-//sidtodo is there a way to make this shared between 'client' and 'IdentityServer' to reduce duplication?
 const sharedConfig = {
 	watch: true,
 	mode: "development",

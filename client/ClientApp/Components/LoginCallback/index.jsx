@@ -19,7 +19,7 @@ class LoginCallback extends React.PureComponent<ILoginCallbackProps,ILoginCallba
     }
 
     componentDidMount() {
-        //sidtodo decipher the forward path instead of assuming home
+        //TODO: decipher the forward path instead of assuming home
         const { history } = this.props;
 
         new Oidc.UserManager(

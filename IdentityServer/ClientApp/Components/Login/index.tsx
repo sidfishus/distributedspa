@@ -3,8 +3,6 @@ import * as React from "react";
 import { Fragment } from "react";
 import { Form, Segment, Container, Header, Input, Grid, Button, Checkbox, Label } from "semantic-ui-react";
 import { IRoutedCompProps } from "../../routes";
-
-//sidtodo use library functions
 import axios from "axios";
 
 interface ILoginProps extends IRoutedCompProps {
@@ -16,13 +14,15 @@ type ILoginState = {
     username: string;
     password: string;
     invalidDetails: boolean;
+    errorMsg: string;
 };
 
 const initialState : ILoginState = {
     username: "",
     password: "",
     rememberMe: true,
-    invalidDetails: false
+    invalidDetails: false,
+    errorMsg: null
 };
 
 export class Login extends React.Component<ILoginProps,ILoginState> {
@@ -79,7 +79,12 @@ export class Login extends React.Component<ILoginProps,ILoginState> {
                 });
             }
             else {
-                //sidtodo error msg
+                const errorMsg=((err.response && err.response.data)?err.response.data: err.message)
+                this.UpdateState(() => {
+                    return {
+                        errorMsg: errorMsg
+                    };
+                });
             }
         });
     }

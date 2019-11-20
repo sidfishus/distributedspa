@@ -3,7 +3,6 @@ import { Fragment } from "react";
 import { Form, Divider, Segment, Checkbox, Grid, Container, Header, Button } from "semantic-ui-react";
 import { ConditionalBold } from "../ConditionalBold";
 import { IRoutedCompProps, IScope } from "../../routes";
-//sidtodo use library functions
 import axios from "axios";
 
 interface IScopeForState extends IScope {
@@ -18,6 +17,7 @@ interface IConsentProps extends IRoutedCompProps {
 type IConsentState = {
     identityScopes: Array<IScopeForState>;
     apiScopes: Array<IScopeForState>;
+    errorMsg: string;
 };
 
 export class Consent extends React.Component<IConsentProps,IConsentState> {
@@ -33,12 +33,17 @@ export class Consent extends React.Component<IConsentProps,IConsentState> {
         this.state = {
             identityScopes: this.CopyScopeForState(consentModel.identityScopes),
             apiScopes: this.CopyScopeForState(consentModel.apiScopes),
+            errorMsg: null
         };
     }
 
     render() {
-        const { identityScopes, apiScopes } = this.state;
+        const { identityScopes, apiScopes, errorMsg } = this.state;
         const { extra: consentModel } = this.props.prerenderData;
+
+        if(errorMsg) {
+            return <p>{errorMsg}</p>;
+        }
 
         const needScopeDivider=(identityScopes.length>0 && apiScopes.length>0);
 
@@ -157,9 +162,13 @@ export class Consent extends React.Component<IConsentProps,IConsentState> {
             returnUrl: returnUrl
         }).then(res => {
             window.location=res.data;
-        }).catch(err => {
-            //sidtodo
-            alert("error 2");
+        }).catch(res => {
+            const errorMsg=((res.response && res.response.data)?res.response.data:res.message);
+            this.UpdateState(() => {
+                return {
+                    errorMsg: errorMsg
+                };
+            });
         });
     }
 }
