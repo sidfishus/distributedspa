@@ -41,10 +41,14 @@ To execute:
 IdentityServer: A .NET MVC Core web application which provides authentication and authorisation to the rest of the application via Identity Server 4 (http://docs.identityserver.io/en/latest/). Login and consent is captured via a Javascript React SPA.
 
 Features:
+  - ASP .NET MVC Core 2.2.
+  - Server side pre-rendering leveraging Microsoft SPA Services.
   - Entity Framework for identity server storage.
+  - Sqlite.
   - Semantic UI React UI theme and controls.
   
   
 TODO: Initial setup
   - DB migration.
   - change the URL's.
+  - SSL errors.
