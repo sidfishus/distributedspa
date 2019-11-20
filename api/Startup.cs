@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using IdentityServer4.Services;
 using IdentityServer4.AccessTokenValidation;
+using DistributedSPA.Shared;
 
 namespace DistributedSPA.API
 {
@@ -43,8 +44,7 @@ namespace DistributedSPA.API
                 .AddIdentityServerAuthentication(options =>
                 {
                     // The URL to the identity server
-                    //sidtodo change hard coded URL
-                    options.Authority = "http://localhost:5099";
+                    options.Authority = URLs.IDENTITY_SERVER;
                     options.RequireHttpsMetadata = false;
 
                     options.ApiName = "DistributedSPA";
@@ -70,7 +70,7 @@ namespace DistributedSPA.API
             }
 
             // Enables the client app and API app to be on the same machine: requests can come from the same origin
-            // I.e. prevents this error: ccess to XMLHttpRequest at 'http://localhost:5010/TestAPI/TestAction' from
+            // I.e. prevents this error: access to XMLHttpRequest at 'http://localhost:5010/TestAPI/TestAction' from
             // origin 'https://localhost:5001' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header
             // is present on the requested resource.
             app.UseCors(builder => {

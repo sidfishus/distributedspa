@@ -3,7 +3,6 @@
 import axios from "axios";
 import * as Oidc from "oidc-client";
 
-//sidtodo change API path
 export function CreateAPIURL(url:string, params: ?string = null) {
 	return `https://localhost:5011/${url}${((params) ? `?${params}` : "")}`;
 }

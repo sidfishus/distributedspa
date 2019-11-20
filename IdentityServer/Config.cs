@@ -5,6 +5,7 @@
 using IdentityServer4.Models;
 using System.Collections.Generic;
 using IdentityServer4;
+using DistributedSPA.Shared;
 
 namespace DistributedSPA.IdentityServer
 {
@@ -56,10 +57,9 @@ namespace DistributedSPA.IdentityServer
                     },
                     */
 
-                    //sidtodo change hard coded URL's
-                    RedirectUris =           { "http://localhost:5000/logincallback" },
-                    PostLogoutRedirectUris = { "http://localhost:5000/logoutcallback" },
-                    AllowedCorsOrigins =     { "http://localhost:5000" },
+                    RedirectUris =           { $"{URLs.CLIENT}/logincallback" },
+                    PostLogoutRedirectUris = { $"{URLs.CLIENT}/logoutcallback" },
+                    AllowedCorsOrigins =     { URLs.CLIENT },
 
                     // scopes that client has access to (the dedicated API for the client)
                     AllowedScopes = {
