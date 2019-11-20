@@ -79,20 +79,6 @@ namespace DistributedSPA.API
                 builder.AllowAnyMethod();
             });
 
-            //sidtodo try
-            // services.AddCors(options =>
-            // {
-            //     // this defines a CORS policy called "default"
-            //     options.AddPolicy("default", policy =>
-            //     {
-            //         policy.WithOrigins("http://localhost:5001")
-            //             .AllowAnyHeader()
-            //             .AllowAnyMethod();
-            //     });
-            // });
-
-            // app.UseCors("default"); // inside Configure()
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             // For identity server

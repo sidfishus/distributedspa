@@ -46,13 +46,12 @@ namespace DistributedSPA.IdentityServer
                     AlwaysSendClientClaims = true,
                     AlwaysIncludeUserClaimsInIdToken = true,
 
-                    //sidtodo current: refresh tokens?
+                    //TODO: refresh tokens?
 
                     // secret for authentication
                     /*
                     ClientSecrets =
                     {
-                        //sidtodo - secret??
                         new Secret("secret".Sha256())
                     },
                     */

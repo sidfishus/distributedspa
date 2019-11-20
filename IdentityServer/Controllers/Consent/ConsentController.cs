@@ -35,40 +35,38 @@ namespace DistributedSPA.IdentityServer {
         public async Task<IActionResult> Index(string returnUrl)
         {
             var request = await m_Interaction.GetAuthorizationContextAsync(returnUrl);
-            if(request!=null) {
-                // Get the client information
-                var client = await m_ClientStore.FindEnabledClientByIdAsync(request.ClientId);
-                if (client != null)
-                {
-                    // Get the list of scopes
-                    var resources = await m_ResourceStore.FindEnabledResourcesByScopeAsync(request.ScopesRequested);
-                    if(resources!=null) {
-
-                        // Create the identity and API scope details
-                        var identityScopes=resources.IdentityResources.Select(
-                            resource => CreateScopeDetails(resource)).ToList();
-                        var apiScopes=resources.ApiResources.SelectMany(resource => resource.Scopes).Select(
-                            resource => CreateScopeDetails(resource)).ToList();
-
-                        var details=new ConsentDetails {
-                            ClientName=client.ClientName,
-                            IdentityScopes=identityScopes,
-                            ApiScopes=apiScopes
-                        };
-
-                        // Pass the identity scope details to the SPA
-                        ViewData["Extra"]=details;
-
-                        return View("../SPA");
-                    }
-                }
-                else {
-                    //sidtodo
-                }
-            } else {
-                //sidtodo
+            if(request==null) {
+                throw new Exception("Failed to get the authorization context.");
             }
-            return null;
+
+            // Get the client information
+            var client = await m_ClientStore.FindEnabledClientByIdAsync(request.ClientId);
+            if(client == null) {
+                throw new Exception("Failed to find the client by ID.");
+            }
+
+            // Get the list of scopes
+            var resources = await m_ResourceStore.FindEnabledResourcesByScopeAsync(request.ScopesRequested);
+            if(resources == null) {
+                throw new Exception("Failed to find the enabled resources.");
+            }
+
+            // Create the identity and API scope details
+            var identityScopes=resources.IdentityResources.Select(
+                resource => CreateScopeDetails(resource)).ToList();
+            var apiScopes=resources.ApiResources.SelectMany(resource => resource.Scopes).Select(
+                resource => CreateScopeDetails(resource)).ToList();
+
+            var details=new ConsentDetails {
+                ClientName=client.ClientName,
+                IdentityScopes=identityScopes,
+                ApiScopes=apiScopes
+            };
+
+            // Pass the identity scope details to the SPA
+            ViewData["Extra"]=details;
+
+            return View("../SPA");
         }
 
         [HttpPost("[controller]")]
@@ -77,8 +75,7 @@ namespace DistributedSPA.IdentityServer {
         {
             var request = await m_Interaction.GetAuthorizationContextAsync(model.ReturnUrl);
             if(request==null) {
-                //sidtodo
-                return null;
+                throw new Exception("Failed to find the authorization context.");
             }
 
             Func<IEnumerable<ScopeDetails>,IEnumerable<string>> GetSelectedScopes = (scopeDetails) => {
@@ -87,7 +84,7 @@ namespace DistributedSPA.IdentityServer {
 
             var scopesConsented = GetSelectedScopes(model.ApiScopes).Concat(GetSelectedScopes(model.IdentityScopes));
             if(scopesConsented==null || scopesConsented.Count()==0) {
-                return null; //sidtodo
+                throw new Exception("No scopes were selected.");
             }
 
             var grantedConsent = new ConsentResponse

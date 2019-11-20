@@ -42,7 +42,6 @@ export class Login extends React.Component<ILoginProps,ILoginState> {
         this.setState(state => f(state));
     }
 
-    //sidtodo test
     ChangeUsername(event: React.ChangeEvent<HTMLInputElement>) {
         const value=event.target.value;
         this.UpdateState(() => {

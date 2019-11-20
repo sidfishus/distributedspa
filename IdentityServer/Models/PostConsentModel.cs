@@ -1,7 +1,6 @@
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
-//sidtodo unfinished
 namespace DistributedSPA.IdentityServer {
     public class PostConsentModel {
         [JsonProperty("IdentityScopes")]

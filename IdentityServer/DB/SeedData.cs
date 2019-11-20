@@ -74,7 +74,6 @@ namespace DistributedSPA.IdentityServer {
                     throw new Exception(errorBuilder.ToString());
                 }
                 // Save the default password
-                //sidtodo should this come after the claims are added?
                 dbContext.SaveChanges();
 
                 adminUser=GetAdminUser();
@@ -88,48 +87,6 @@ namespace DistributedSPA.IdentityServer {
             if (!claimsList.Contains("IsAdmin")) {
                 userMgr.AddClaimAsync(adminUser,new Claim("IsAdmin","1"));  
             }
-
-            //sidtodo other claims as per below?
-
-
-            
-
-                //     context.Database.Migrate();
-
-                //     var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-                //     var alice = userMgr.FindByNameAsync("alice").Result;
-                //     if (alice == null)
-                //     {
-                //         alice = new ApplicationUser
-                //         {
-                //             UserName = "alice"
-                //         };
-                //         var result = userMgr.CreateAsync(alice, "Pass123$").Result;
-                //         if (!result.Succeeded)
-                //         {
-                //             //throw new Exception(result.Errors.First().Description);
-                //         }
-
-                //         result = userMgr.AddClaimsAsync(alice, new Claim[]{
-                //         new Claim(JwtClaimTypes.Name, "Alice Smith"),
-                //         new Claim(JwtClaimTypes.GivenName, "Alice"),
-                //         new Claim(JwtClaimTypes.FamilyName, "Smith"),
-                //         new Claim(JwtClaimTypes.Email, "AliceSmith@email.com"),
-                //         new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
-                //         new Claim(JwtClaimTypes.WebSite, "http://alice.com"),
-                //         new Claim(JwtClaimTypes.Address, @"{ 'street_address': 'One Hacker Way', 'locality': 'Heidelberg', 'postal_code': 69118, 'country': 'Germany' }", IdentityServer4.IdentityServerConstants.ClaimValueTypes.Json)
-                //     }).Result;
-                //         if (!result.Succeeded)
-                //         {
-                //             //throw new Exception(result.Errors.First().Description);
-                //         }
-                //         Console.WriteLine("alice created");
-                //     }
-                //     else
-                //     {
-                //         Console.WriteLine("alice already exists");
-                //     }
-                // }
         }
     }
 }

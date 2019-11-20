@@ -66,7 +66,6 @@ namespace DistributedSPA.IdentityServer
                 {
                     options.InvocationTimeoutMilliseconds=1000000;
                     options.LaunchWithDebugging = true;
-                    //sidtodo change the port?
                     options.DebuggingPort = 9230;
                 }
             });
@@ -106,20 +105,6 @@ namespace DistributedSPA.IdentityServer
             app.UseIdentityServer();
 
             app.UseMvcWithDefaultRoute();
-
-            // app.UseMvc(routes =>
-            // {
-            //     routes.MapRoute(
-            //         name: "default",
-            //         template: "{controller=Account}/{action=Login}/{id?}");
-
-            //         //sidtodo
-
-            //     // Replaces the 'URL rewrite' functionality in IIS
-            //     // routes.MapSpaFallbackRoute(
-            //     //     name: "spa-fallback",
-            //     //     defaults: new { controller = "Home", action = "Index" });
-            // });
         }
     }
 }
