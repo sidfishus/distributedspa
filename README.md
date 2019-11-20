@@ -5,7 +5,7 @@ The purpose of this is to provide a template for modern web applications.. Devel
 
 Projects:
 
-Client: A modern Javascript React SPA which calls a protected external web API. When not logged in redirects to the identity server.
+Client: A modern Javascript React SPA which calls a protected external web API. When not logged in redirects to the identity server for logging in.
   
 Features:
   - ASP .NET MVC Core 2.2 for hosting the static front end files.
@@ -38,10 +38,11 @@ To execute:
   - Use the 'API' debug task.
 
 
-IdentityServer:
+IdentityServer: A .NET MVC Core web application which provides authentication and authorisation to the rest of the application via Identity Server 4 (http://docs.identityserver.io/en/latest/). Login and consent is captured via a Javascript React SPA.
 
 Features:
   - Entity Framework for identity server storage.
+  - Semantic UI React UI theme and controls.
   
   
 TODO: Initial setup
