@@ -60,6 +60,21 @@
             }
         },
         {
+            "label": "api: https",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "dev-certs",
+                "https",
+                "--trust"
+            ],
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+        },
+        {
             "label": "api",
             "command": "dotnet",
             "type": "process",
@@ -72,6 +87,7 @@
                 "kind": "build",
                 "isDefault": false
             },
+            "dependsOn": ["api: https"],
         },
         {
             "label": "identity",

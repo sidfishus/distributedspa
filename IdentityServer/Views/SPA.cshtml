@@ -24,10 +24,8 @@
 <div id="react" asp-prerender-module="Server/main-server" asp-prerender-data="prerenderData"></div>
 
 @{
-    // Only load the client APP if 'SSR only' is not specified
-    //sidtodo SSR
+    // Set to false to test SSR only.
     if(true)
-    //if(!Config.SSROnly)
     {
         <script src="~/js/main-client.js"></script>
     }

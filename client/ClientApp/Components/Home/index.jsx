@@ -91,10 +91,23 @@ class Home extends React.PureComponent<IHomeProps,IHomeState> {
                     };
                 });
             }).catch((res) => {
+                let errorMsg;
+                if(res.response && res.response.data) {
+                    errorMsg=res.response.data;
+                }
+                else {
+                    errorMsg=res.message;
+                    if(errorMsg === "Network Error") {
+                        // See this article for help:
+                        // https://medium.com/@ali.dev/how-to-trust-any-self-signed-ssl-certificate-in-ie11-and-edge-fa7b416cac68
+                        errorMsg = `${errorMsg}. This may also happen if a browser SSL certificate has not been installed for the API application.`;
+                    }
+                }
+
                 this.setState(() => {
                     return {
                         loadedData: null,
-                        errorMsg: ((res.response.data)?res.response.data:res.message),
+                        errorMsg: errorMsg,
                         reqData: false
                     };
                 });

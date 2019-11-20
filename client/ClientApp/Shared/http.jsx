@@ -5,7 +5,7 @@ import * as Oidc from "oidc-client";
 
 //sidtodo change API path
 export function CreateAPIURL(url:string, params: ?string = null) {
-	return `http://localhost:5010/${url}${((params) ? `?${params}` : "")}`;
+	return `https://localhost:5011/${url}${((params) ? `?${params}` : "")}`;
 }
 
 export function HttpGetJson(url:string) {

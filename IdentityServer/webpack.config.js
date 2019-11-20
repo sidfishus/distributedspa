@@ -9,32 +9,14 @@ const sharedConfig = {
 	module: {
 		rules: [
 			{
-				test: /\.jsx/,
-				exclude: /(node_modules)/,
-				use: {
-					loader: "babel-loader",
-					options: {
-						presets: [
-							["babel-preset-env", {
-								"targets": {
-									"browsers": [
-										"last 2 versions",
-										"IE >= 11"
-									]
-								},
-								"useBuiltIns": true
-							}], "babel-preset-react", "babel-preset-flow"],
-						plugins: [
-							"transform-object-rest-spread",
-							"react-hot-loader/babel"
-						]
-					}
-				}
-			}
+				test: /(\.ts$|\.tsx$)/,
+				use: 'ts-loader',
+				exclude: /node_modules/,
+			},
 		]
 	},
 	resolve: {
-		extensions: ['.js', '.jsx']
+		extensions: ['.js', '.tsx', '.ts']
 	},
 	stats: { modules: false }, /* This changes the run webpack output */
 };
@@ -43,7 +25,8 @@ const clientConfig = merge(sharedConfig, {
 	entry: {
 		"main-client": [
 			"babel-polyfill",
-			"./ClientApp/boot-client.jsx"
+			"core-js",
+			"./ClientApp/boot-client.tsx"
 		]
 	},
 	output: {
@@ -59,7 +42,8 @@ const serverBundleConfig = merge(sharedConfig, {
 	entry: {
 		"main-server": [
 			"babel-polyfill",
-			"./ClientApp/boot-server.jsx"
+			"core-js",
+			"./ClientApp/boot-server.tsx"
 		]
 	},
 	output: {
