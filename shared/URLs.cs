@@ -1,4 +1,5 @@
 
+//TODO: change these accordingly. Also see URLs.js
 namespace DistributedSPA.Shared {
     public class URLs {
         public const string IDENTITY_SERVER="http://localhost:5099";
