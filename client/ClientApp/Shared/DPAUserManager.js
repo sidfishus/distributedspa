@@ -1,6 +1,7 @@
 // @flow
 
 import * as Oidc from "oidc-client";
+import { URLs_CLIENT, URLs_IDENTITY_SERVER } from "../Shared/URLs";
 
 export class DPAUserManager {
 
@@ -13,14 +14,13 @@ export class DPAUserManager {
     // Call this within the componentDidMount method of a React component.
     Initialise(fOnLoaded: (user: Oidc.User) => void) {
         if(!this.m_UserManager) {
-            //sidtodo change the URL's
             var config = {
-                authority: "http://localhost:5099",
+                authority: URLs_IDENTITY_SERVER,
                 client_id: "DistributedSPAClient",
-                redirect_uri: "http://localhost:5000/logincallback",
+                redirect_uri: `${URLs_CLIENT}/logincallback`,
                 response_type: "code",
                 scope:"openid DistributedSPA",
-                post_logout_redirect_uri : "http://localhost:5000/logoutcallback",
+                post_logout_redirect_uri : `${URLs_CLIENT}/logoutcallback`,
             };
             this.m_UserManager = new Oidc.UserManager(config);
         }

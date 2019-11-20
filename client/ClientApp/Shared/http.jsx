@@ -2,9 +2,10 @@
 
 import axios from "axios";
 import * as Oidc from "oidc-client";
+import { URLs_API } from "./URLs";
 
 export function CreateAPIURL(url:string, params: ?string = null) {
-	return `https://localhost:5011/${url}${((params) ? `?${params}` : "")}`;
+	return `${URLs_API}/${url}${((params) ? `?${params}` : "")}`;
 }
 
 export function HttpGetJson(url:string) {
