@@ -23,7 +23,8 @@ To execute:
   - 'dotnet run' within a command prompt window.
   
 To debug:
-  - Use the 'Client' debug task.
+  - Use the 'Client' debug task (back end).
+  - Front end ...
 
 
 API: A .NET MVC Core web API application with a test controller and a protected API method which can only be accessed by an authenticated user with a 'IsAdmin' claim.
