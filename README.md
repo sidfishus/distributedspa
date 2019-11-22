@@ -3,16 +3,16 @@ Distributed isomorphic React single page application (SPA) hosted using .NET MVC
 
 The purpose of this is to provide a template for modern web applications. Developed using Chrome, and tested on IE and Edge browsers. Developed using the Microsoft Visual Code IDE and includes integrated build and debugging tasks.
 
-There is a video by the Identity Server 4 creators that is available on YouTube that describes authentication and the distributed model used in this project: https://www.youtube.com/watch?edufilter=NULL&v=eF2myGRT8bo.
+There is a video by the Identity Server 4 creators which is available on YouTube that describes authentication and the distributed model used in this project: https://www.youtube.com/watch?edufilter=NULL&v=eF2myGRT8bo.
 
 Projects:
 
-Client: A modern Javascript React SPA which calls a protected external web API. When not logged in redirects to the identity server for logging in. Incorporating a .NET and Node server backend, and a Javascript client.
+Client: A modern Javascript React SPA which calls a protected external web API. When not logged in redirects to the identity server for authentication. Incorporating a .NET and Node server backend, and a Javascript client application.
   
 Features:
   - ASP .NET MVC Core 2.2 for hosting the static front end files.
   - Server side pre-rendering leveraging Microsoft SPA Services.
-  - Webpack and Babel for compiling and bundling Javascript files including the object spread syntax plugin.
+  - Webpack and Babel for compiling and bundling Javascript files which includes the object spread syntax plugin.
   - React version 16.12.
   - Hot module replacement (live page reloading upon changes) provided by the React hot loader (https://github.com/gaearon/react-hot-loader).
   - Flow for static type checking.
@@ -20,8 +20,12 @@ Features:
   - React UI theme and controls provided by React Bootstrap: (https://react-bootstrap.github.io/).
   - React router for client-side routing and navigation.
   - Axios for asynchronous web requests.
-  - No Redux but this can be added easily.
-  
+  - No Redux but this would be simple to add.
+  - Babel and core-js Javascript polyfills for use with older browsers.
+
+To build:
+  - Use the integrated build tasks.
+
 To execute:
   - 'dotnet run' within a command prompt window.
   
@@ -35,8 +39,10 @@ API: A .NET MVC Core web API application with a test controller and a protected 
 
 Features:
   - ASP .NET MVC Core 2.2.
-  - Bearer authentication.
-  - Identity Server 4 authentication.
+  - Bearer authentication provided by Identity Server 4.
+  
+To build:
+  - Use the integrated build tasks.
   
 To execute:
   - 'dotnet run' within a command prompt window.
@@ -55,9 +61,25 @@ Features:
   - Microsoft Sqlite as the underlying database technology.
   - Semantic UI React UI theme and controls.
   - Typescript for static type checking and integration with Webpack/Babel.
-  - Webpack and Babel for compiling and bundling Javascript files including the object spread syntax plugin.
+  - Webpack and Babel for compiling and bundling Javascript files which includes the object spread syntax plugin.
   - React version 16.12.
-  - Hot module replacement (live page reloading upon changes) provided by the React hot loader (https://github.com/gaearon/react-hot-loader).
+  - Hot module replacement as per the client application.
+  - Axios as per the client application.
+  - Babel and core-js Javascript polyfills for use with older browsers.
+  
+To build:
+  - Use the integrated build tasks.
+  
+To execute:
+  - 'dotnet run' within a command prompt window.
+  
+To debug:
+  - Use the 'IdentityServer' debug task to debug the .NET server side code.
+  - You can use Chrome to debug the server side Javascript code as per the client application.
+  - The client-side Javascript code can be debugged using the browser as per the client application.
+  
+  
+== Initial Setup ==
   
   
 TODO: Initial setup
