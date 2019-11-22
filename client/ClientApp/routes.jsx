@@ -3,7 +3,6 @@
 import * as React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./Components/Home";
-import CallToAPIComponent from "./Components/CallToAPI";
 import LoginCallback from "./Components/LoginCallback";
 import { DPAUserManager } from "./Shared/DPAUserManager";
 import { StandardPage } from "./Components/Standard Page";
