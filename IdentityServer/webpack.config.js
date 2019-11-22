@@ -7,14 +7,35 @@ const sharedConfig = {
 	module: {
 		rules: [
 			{
-				test: /(\.ts$|\.tsx$)/,
-				use: 'ts-loader',
+				test: /(\.ts|\.tsx|\.jsx)/,
 				exclude: /node_modules/,
+				use: [
+					{
+						loader: "babel-loader",
+						options: {
+							presets: [
+								["babel-preset-env", {
+									"targets": {
+										"browsers": [
+											"last 2 versions",
+											"IE >= 11"
+										]
+									},
+									"useBuiltIns": true
+								}], "babel-preset-react", "babel-preset-flow"],
+							plugins: [
+								"transform-object-rest-spread",
+								"react-hot-loader/babel"
+							]
+						}
+					},
+					"ts-loader",
+				]
 			},
 		]
 	},
 	resolve: {
-		extensions: ['.js', '.tsx', '.ts']
+		extensions: ['.js', '.tsx', '.ts', '.jsx']
 	},
 	stats: { modules: false }, /* This changes the run webpack output */
 };
