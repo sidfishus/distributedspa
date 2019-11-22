@@ -1,5 +1,5 @@
 # distributedspa
-Distributed isomorphic React single page application (SPA) hosted using .NET MVC Core 2.2 with seperate client, API, and identity server applications.
+Distributed isomorphic React single page application (SPA) hosted via .NET MVC Core 2.2 with seperate client, API, and identity server applications.
 
 The purpose of this is to provide a template for modern web applications. Developed using Chrome, and tested on IE and Edge browsers. Developed using the Microsoft Visual Code IDE and includes integrated build and debugging tasks.
 
@@ -7,15 +7,15 @@ There is a video by the Identity Server 4 creators which is available on YouTube
 
 Projects:
 
-Client: A modern Javascript React SPA which calls a protected external web API. When not logged in redirects to the identity server for authentication. Incorporating a .NET and Node server backend, and a Javascript client application.
+Client: A modern Javascript React SPA which calls a protected external web API. When not logged in the application redirects the user to the identity server for authentication. Incorporates a .NET and Node JS server backend, and a Javascript client application.
   
 Features:
   - ASP .NET MVC Core 2.2 for hosting the static front end files.
-  - Server side pre-rendering leveraging Microsoft SPA Services.
+  - Server side pre-rendering leveraging Microsoft SPA Services and Node.
   - Webpack and Babel for compiling and bundling Javascript files which includes the object spread syntax plugin.
   - React version 16.12.
   - Hot module replacement (live page reloading upon changes) provided by the React hot loader (https://github.com/gaearon/react-hot-loader).
-  - Flow for static type checking.
+  - Flow (https://flow.org/) for static type checking.
   - Interfaces with the identity server via the OIDC client provided by Identity Server 4.
   - React UI theme and controls provided by React Bootstrap: (https://react-bootstrap.github.io/).
   - React router for client-side routing and navigation.
@@ -32,10 +32,10 @@ To execute:
 To debug:
   - Use the 'Client' debug task to debug the .NET server side code.
   - To debug the server side Javascript code you can use the dedicated tools for Node inside the Chrome browser 'chrome://inspect' feature.
-  - The client-side code can be debugged within the browser. The application features code mapping (via Webpack) that allows the original source code (not the final transpiled version) to be debugged.
+  - The client-side code can be debugged within the browser. The application features code mapping (via Webpack) that allows the original source code (not the final transpiled version) to be stepped.
 
 
-API: A .NET MVC Core web API application with a test controller and a protected API method which can only be accessed by an authenticated user with a 'IsAdmin' claim. This project features no client-side code.
+API: A .NET MVC Core web API application that includes a test controller and a protected API method which can only be accessed by an authenticated user with a 'IsAdmin' claim. This project features no client-side code.
 
 Features:
   - ASP .NET MVC Core 2.2.
@@ -86,6 +86,6 @@ Initial Setup
   - The database used in the Identity Server project must be created and seeded. To do this, within a command prompt window navigate to the IdentityServer sub directory, and run the following commands:
     - 'dotnet ef migrations add InitialCreate'
     - 'dotnet ef database update'
-  - As part of seeding the database an administrator user will be created with a random password. In order to login to the application you will require this password. This password can be viewed by opening the Identity Server database file 'AspIdUsers.db' and finding the 'header' table. Inside here will be a single row that has a column named 'DefaultAdminPassword'. To view the database you can use an application named 'DB Browser for Sqlite': https://sqlitebrowser.org/.
-  - URL's to the 3 applications are held in URLs.cs and mirrored in URLs.js: change these accordingly.
+  - As part of seeding the database an administrator user will be created with a random password. In order to login to the application you will require this password. This password can be viewed by opening the Identity Server database file 'AspIdUsers.db' and finding the 'header' table, inside here will be a single row that has a column named 'DefaultAdminPassword'. To view the contents of the database you can use an application named 'DB Browser for Sqlite': https://sqlitebrowser.org/.
+  - URL's to the 3 applications are held in URLs.cs and mirrored in URLs.js: change these accordingly but will work as-is for development purposes (as long as the ports are not already in use).
   - You may receive errors when contacting the API relating to a network error or SSL certificates when running it from a development machine. I found the following helpful in resolving this: https://medium.com/@ali.dev/how-to-trust-any-self-signed-ssl-certificate-in-ie11-and-edge-fa7b416cac68.
