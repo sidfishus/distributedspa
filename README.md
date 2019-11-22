@@ -3,6 +3,8 @@ Distributed isomorphic React SPA hosted using .NET MVC Core 2.2 with seperate cl
 
 The purpose of this is to provide a template for modern web applications.. Developed on Chrome, and tested on IE and Edge browsers. Developed using the Microsoft Visual Code IDE and includes integrated build and debugging tasks.
 
+There is a video by the Identity Server 4 creators that is available on YouTube that describes authentication and the distributed architecture used in this project: https://www.youtube.com/watch?edufilter=NULL&v=eF2myGRT8bo.
+
 Projects:
 
 Client: A modern Javascript React SPA which calls a protected external web API. When not logged in redirects to the identity server for logging in.
