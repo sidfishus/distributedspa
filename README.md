@@ -89,3 +89,6 @@ Initial Setup
   - As part of seeding the database an administrator user will be created with a random password. In order to login to the application you will require this password. This password can be viewed by opening the Identity Server database file 'AspIdUsers.db' and finding the 'header' table, inside here will be a single row that has a column named 'DefaultAdminPassword'. To view the contents of the database you can use an application named 'DB Browser for Sqlite': https://sqlitebrowser.org/. Once the password is known, this row can be deleted from the database.
   - URL's to the 3 applications are held in URLs.cs and mirrored in URLs.js: change these accordingly but it will work as-is for development purposes (as long as the ports are not already in use).
   - You may receive errors when contacting the API relating to a network error or SSL certificates when running it from a development machine. I found the following helpful in resolving this: https://medium.com/@ali.dev/how-to-trust-any-self-signed-ssl-certificate-in-ie11-and-edge-fa7b416cac68.
+
+
+Application default URL: http://localhost:5000/home
