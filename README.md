@@ -79,14 +79,13 @@ To debug:
   - The client-side Javascript code can be debugged using the browser as per the client application.
   
   
+Shared: This contains C# code that is shared between the projects.
+  
+  
 Initial Setup
   - The database used in the Identity Server project must be created and seeded. To do this, within a command prompt window navigate to the IdentityServer sub directory, and run the following commands:
     - 'dotnet ef migrations add InitialCreate'
     - 'dotnet ef database update'
   - As part of seeding the database an administrator user will be created with a random password. In order to login to the application you will require this password. This password can be viewed by opening the Identity Server database file 'AspIdUsers.db' and finding the 'header' table. Inside here will be a single row that has a column named 'DefaultAdminPassword'. To view the database you can use an application named 'DB Browser for Sqlite': https://sqlitebrowser.org/.
-  
-  
-TODO: Initial setup
-  - DB migration.
-  - change the URL's. (and potentially the ports in VS Code).
-  - SSL errors.
+  - URL's to the 3 applications are held in URLs.cs and mirrored in URLs.js: change these accordingly.
+  - You may receive errors when contacting the API relating to a network error or SSL certificates when running it from a development machine. I found the following helpful in resolving this: https://medium.com/@ali.dev/how-to-trust-any-self-signed-ssl-certificate-in-ie11-and-edge-fa7b416cac68.
