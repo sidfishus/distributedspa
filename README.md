@@ -1,5 +1,5 @@
 # distributedspa
-Distributed isomorphic React single page application (SPA) hosted via .NET MVC Core 2.2 with seperate client, API, and identity server applications.
+A distributed isomorphic React single page application (SPA) hosted via .NET MVC Core 2.2 with seperate client, API, and identity server applications.
 
 The purpose of this is to provide a template for modern web applications. Developed using Chrome, and tested on IE and Edge browsers. Developed using the Microsoft Visual Code IDE and includes integrated build and debugging tasks.
 
@@ -11,12 +11,12 @@ Client: A modern Javascript React SPA which calls a protected external web API. 
   
 Features:
   - ASP .NET MVC Core 2.2 for hosting the static front end files.
-  - Server side pre-rendering leveraging Microsoft SPA Services and Node.
-  - Webpack and Babel for compiling and bundling Javascript files which includes the object spread syntax plugin.
+  - Server side pre-rendering by leveraging the Microsoft SPA Services and Node JS.
+  - Webpack and Babel for transpiling and bundling Javascript files, and includes the object spread syntax plugin.
   - React version 16.12.
-  - Hot module replacement (live page reloading upon changes) provided by the React hot loader (https://github.com/gaearon/react-hot-loader).
+  - Hot module replacement (web pages reload upon changes to the code) provided by the React hot loader (https://github.com/gaearon/react-hot-loader) and Microsoft SPA services.
   - Flow (https://flow.org/) for static type checking.
-  - Interfaces with the identity server via the OIDC client provided by Identity Server 4.
+  - Interfaces with the identity server via the OIDC Javascript client provided by Identity Server 4.
   - React UI theme and controls provided by React Bootstrap: (https://react-bootstrap.github.io/).
   - React router for client-side routing and navigation.
   - Axios for asynchronous web requests.
@@ -56,7 +56,7 @@ IdentityServer: A .NET MVC Core web application which provides authentication an
 
 Features:
   - ASP .NET MVC Core 2.2.
-  - Server side pre-rendering by leveraging the Microsoft SPA Services.
+  - Server side pre-rendering by leveraging the Microsoft SPA Services and Node JS.
   - Entity Framework for identity server storage.
   - Microsoft Sqlite as the underlying database technology.
   - Semantic UI React UI theme and controls.
@@ -86,6 +86,6 @@ Initial Setup
   - The database used in the Identity Server project must be created and seeded. To do this, within a command prompt window navigate to the IdentityServer sub directory, and run the following commands:
     - 'dotnet ef migrations add InitialCreate'
     - 'dotnet ef database update'
-  - As part of seeding the database an administrator user will be created with a random password. In order to login to the application you will require this password. This password can be viewed by opening the Identity Server database file 'AspIdUsers.db' and finding the 'header' table, inside here will be a single row that has a column named 'DefaultAdminPassword'. To view the contents of the database you can use an application named 'DB Browser for Sqlite': https://sqlitebrowser.org/.
-  - URL's to the 3 applications are held in URLs.cs and mirrored in URLs.js: change these accordingly but will work as-is for development purposes (as long as the ports are not already in use).
+  - As part of seeding the database an administrator user will be created with a random password. In order to login to the application you will require this password. This password can be viewed by opening the Identity Server database file 'AspIdUsers.db' and finding the 'header' table, inside here will be a single row that has a column named 'DefaultAdminPassword'. To view the contents of the database you can use an application named 'DB Browser for Sqlite': https://sqlitebrowser.org/. Once the password is known, this row can be deleted from the database.
+  - URL's to the 3 applications are held in URLs.cs and mirrored in URLs.js: change these accordingly but it will work as-is for development purposes (as long as the ports are not already in use).
   - You may receive errors when contacting the API relating to a network error or SSL certificates when running it from a development machine. I found the following helpful in resolving this: https://medium.com/@ali.dev/how-to-trust-any-self-signed-ssl-certificate-in-ie11-and-edge-fa7b416cac68.
