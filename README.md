@@ -93,5 +93,5 @@ This contains C# code that is shared between the projects.
   - You may receive errors when contacting the API relating to a network error or SSL certificates when running it from a development machine. I found the following helpful in resolving this: https://medium.com/@ali.dev/how-to-trust-any-self-signed-ssl-certificate-in-ie11-and-edge-fa7b416cac68.
 
 
-### Application default URL
-http://localhost:5000/home
+### Application Default URL
+Once the 3 applications are running, the application can be accessed via http://localhost:5000/home.
