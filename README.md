@@ -1,7 +1,7 @@
 # Distributed SPA
 A distributed isomorphic React single page application (SPA) hosted via .NET MVC Core 2.2 with seperate client, API, and identity server applications.
 
-The purpose of this is to provide a template for modern web applications. Developed using Chrome, and tested on IE and Edge browsers. Developed using the Microsoft Visual Code IDE and includes integrated build and debugging tasks.
+The purpose of this is to provide a template for modern clientside web applications. Developed using Chrome, and tested on IE and Edge browsers. Developed using the Microsoft Visual Code IDE and includes integrated build and debugging tasks.
 
 There is a video by the Identity Server 4 creators which is available on YouTube that describes authentication and the distributed model used in this project: https://www.youtube.com/watch?edufilter=NULL&v=eF2myGRT8bo.
 
