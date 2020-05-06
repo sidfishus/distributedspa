@@ -7,7 +7,8 @@ There is a video by the Identity Server 4 creators which is available on YouTube
 
 Projects:
 
-Client: A modern Javascript React SPA which calls a protected external web API. When not logged in the application redirects the user to the identity server for authentication. Incorporates a .NET and Node JS server backend, and a Javascript client application.
+## Client
+A modern Javascript React SPA which calls a protected external web API. When not logged in the application redirects the user to the identity server for authentication. Incorporates a .NET and Node JS server backend, and a Javascript client application.
   
 Features:
   - ASP .NET MVC Core 2.2 for hosting the static front end files.
