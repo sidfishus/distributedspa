@@ -5,7 +5,7 @@ The purpose of this is to provide a template for modern web applications. Develo
 
 There is a video by the Identity Server 4 creators which is available on YouTube that describes authentication and the distributed model used in this project: https://www.youtube.com/watch?edufilter=NULL&v=eF2myGRT8bo.
 
-Projects:
+Distributed SPA consists of 3 applications which uses 4 code projects.
 
 ### Client
 A modern Javascript React SPA which calls a protected external web API. When not logged in the application redirects the user to the identity server for authentication. Incorporates a .NET and Node JS server backend, and a Javascript client application.
@@ -94,4 +94,4 @@ This contains C# code that is shared between the projects.
 
 
 ### Application Default URL
-Once the 3 applications are running, the application can be accessed via http://localhost:5000/home.
+When the client, IdentityServer, and API server applications are running, the client application can be accessed via http://localhost:5000/home.
