@@ -7,7 +7,7 @@ There is a video by the Identity Server 4 creators which is available on YouTube
 
 Projects:
 
-## Client
+### Client
 A modern Javascript React SPA which calls a protected external web API. When not logged in the application redirects the user to the identity server for authentication. Incorporates a .NET and Node JS server backend, and a Javascript client application.
   
 Features:
@@ -36,7 +36,8 @@ To debug:
   - The client-side code can be debugged within the browser. The application features code mapping (via Webpack) that allows the original source code (not the final transpiled version) to be stepped.
 
 
-API: A .NET MVC Core web API application that includes a test controller and a protected API method which can only be accessed by an authenticated user with a 'IsAdmin' claim. This project features no client-side code.
+### API
+A .NET MVC Core web API application that includes a test controller and a protected API method which can only be accessed by an authenticated user with a 'IsAdmin' claim. This project features no client-side code.
 
 Features:
   - ASP .NET MVC Core 2.2.
@@ -53,7 +54,8 @@ To debug:
   - Use the 'API' debug task to debug this.
 
 
-IdentityServer: A .NET MVC Core web application which provides authentication and authorisation to the rest of the application via Identity Server 4 (http://docs.identityserver.io/en/latest/). Login and consent is captured via a Javascript React SPA.
+### IdentityServer
+A .NET MVC Core web application which provides authentication and authorisation to the rest of the application via Identity Server 4 (http://docs.identityserver.io/en/latest/). Login and consent is captured via a Javascript React SPA.
 
 Features:
   - ASP .NET MVC Core 2.2.
@@ -79,11 +81,10 @@ To debug:
   - You can use Chrome to debug the server side Javascript code as per the client application.
   - The client-side Javascript code can be debugged using the browser as per the client application.
   
+### Shared
+This contains C# code that is shared between the projects. 
   
-Shared: This contains C# code that is shared between the projects.
-  
-  
-Initial Setup
+### Initial Setup
   - The database used in the Identity Server project must be created and seeded. To do this, within a command prompt window navigate to the IdentityServer sub directory, and run the following commands:
     - 'dotnet ef migrations add InitialCreate'
     - 'dotnet ef database update'
@@ -92,4 +93,5 @@ Initial Setup
   - You may receive errors when contacting the API relating to a network error or SSL certificates when running it from a development machine. I found the following helpful in resolving this: https://medium.com/@ali.dev/how-to-trust-any-self-signed-ssl-certificate-in-ie11-and-edge-fa7b416cac68.
 
 
-Application default URL: http://localhost:5000/home
+### Application default URL
+http://localhost:5000/home
